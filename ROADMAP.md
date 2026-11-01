@@ -13,7 +13,7 @@ exists and the maintainer approves it.
 | --- | --- | --- | --- |
 | P0 Bootstrap | #1 | `feature/p0-bootstrap` | complete |
 | P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | complete |
-| P2 Engine extraction | TBD | `feature/p2-engine-extraction` | planned |
+| P2 Engine extraction | #7 | `feature/p2-engine-extraction` | active |
 | P3 CPU/GPU search scheduling | TBD | `feature/p3-search-scheduling` | planned |
 | P4 Benchmark adapters and evidence | TBD | `feature/p4-benchmarks` | planned |
 | P5 Release and reproducibility | TBD | `feature/p5-release` | planned |
@@ -72,9 +72,9 @@ Acceptance criteria:
 
 ## Phase 2: Engine extraction
 
-Parent issue: TBD
+Parent issue: #7
 Branch: `feature/p2-engine-extraction`
-Status: planned
+Status: active
 
 Goal: extract the reusable engine from WS4 without coupling it to forestry accounts or datasets.
 
