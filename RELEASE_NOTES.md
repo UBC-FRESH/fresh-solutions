@@ -1,3 +1,23 @@
+# Fresh Solutions v0.3.0
+
+Date: 2026-11-01
+
+Convergence and neighborhood release.
+
+## Changes
+
+- Added `ConvergenceConfig`, `ConvergenceResult`, and `run_to_convergence`.
+- Added TSP Or-opt segment moves alongside 2-opt.
+- Added TSP Or-opt contract tests.
+- Convergence pilot: tai12a local optimum 7.397%; kroA100 reaches optimum 21,282; ch150 reaches 6.495% gap with a patience stop at 191,651 evaluations.
+- Version/citation updated to v0.3.0.
+
+## Known gaps
+
+- Convergence is a stopping-rule claim, not a global-optimality proof.
+- QAP tai12a remains at a local optimum.
+- QAP/TSP campaign is not yet released as final evidence.
+
 # Fresh Solutions v0.2.0
 
 Date: 2026-11-01

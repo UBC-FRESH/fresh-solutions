@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fresh-solutions"
-version = "0.2.0"
+version = "0.3.0"
 description = "A hybrid metaheuristic engine for hard combinatorial optimisation"
 readme = "README.md"
 requires-python = ">=3.11"

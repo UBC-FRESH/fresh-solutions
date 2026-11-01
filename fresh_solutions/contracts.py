@@ -44,11 +44,17 @@ class Change:
         Previous option index.
     after : int
         Proposed option index.
+    kind : str, optional
+        Move kind. Defaults to ``"swap"``; adapters may use ``"2opt"`` or ``"oropt"``.
+    size : int, optional
+        Segment size for segment moves. Defaults to one.
     """
 
     variable: int
     before: int
     after: int
+    kind: str = "swap"
+    size: int = 1
 
 
 @dataclass(frozen=True)
