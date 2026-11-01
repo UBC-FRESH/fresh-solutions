@@ -63,7 +63,7 @@ Goal: define the boundary between a problem and the engine before extracting cod
 
 - [x] P1.1 Write the adapter protocol: variables, domains, candidates, objective, feasibility, moves
 - [x] P1.2 Define the evidence/replay contract
-- [ ] P1.3 Record the first ADRs
+- [x] P1.3 Build a WS4-free toy adapter and contract tests
 
 Acceptance criteria:
 

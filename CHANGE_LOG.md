@@ -22,3 +22,5 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added the executable adapter/replay contract and a WS4-free graph-colouring toy adapter.
 - 144 tests pass with 100% branch coverage; ruff, strict mypy, Sphinx `-W`, and the workflow validator pass.
 - P1 is complete; P2 engine extraction remains planned.
+
+- P1 roadmap corrected to match the completed toy-adapter task.
