@@ -44,8 +44,8 @@ Status: complete
 
 Goal: establish the public package identity, license, documentation, and reviewable first pull request.
 
-- [ ] P0.1 Adapt `AGENTS.md`, `README.md`, and the license to Fresh Solutions
-- [ ] P0.2 Confirm the validator and docs build pass
+- [x] P0.1 Adapt `AGENTS.md`, `README.md`, and the license to Fresh Solutions
+- [x] P0.2 Confirm the validator and docs build pass
 
 Acceptance criteria:
 
