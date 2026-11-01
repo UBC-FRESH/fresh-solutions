@@ -100,3 +100,12 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added the certified QAP budget ladder and SciPy FAQ baseline to the public progression guide.
 - Corrected the outdated 10k-fixed limit.
 - No code change or release.
+
+### P10.1 Lin–Kernighan core
+
+- Added `fresh_solutions.adapters.tsp_lk`: candidate-list sequential edge exchange,
+  deterministic double-bridge kicks, and exact tour construction.
+- Added `tests/test_tsp_lk.py` for validity, determinism, replay, configuration, and small cases.
+- Extended the public API exports and docs page.
+- Dashboard green: 186 tests, 95.21% coverage, all gates pass.
+- No release tag; TSPLIB campaign is next.
