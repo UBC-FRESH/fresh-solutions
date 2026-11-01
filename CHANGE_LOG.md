@@ -64,3 +64,33 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added convergence protocol and TSP Or-opt.
 - Convergence pilot: tai12a local optimum 7.397%; kroA100 optimum; ch150 6.495% at patience stop.
 - 173 tests, docs, workflow validator green; v0.3.0 release.
+
+### P8.1 QAP robust tabu
+
+- Added exact-delta robust tabu for QAP and tests.
+- Five-seed 10k results: tai12a 0.000%, tai20a 0.403%, tai25a 0.786%, tai30a 0.792% mean gap.
+- P8 remains active; no release tag.
+
+### P8.2 TSP 3-opt evaluation
+
+- Added experimental randomized 3-opt and exact-replay tests.
+- No improvement over converged Or-opt on berlin52/kroA100/ch150; not adopted.
+- P8.2 complete with a recorded limit; P8.3 remains open.
+
+### P8.4 heuristic progression
+
+- Added `notes/reports/heuristic-progression.md` with stage budgets, measured gaps, and negative 3-opt result.
+- Added public Sphinx guide `docs/heuristic-progression.rst`.
+- No release tag; P8.3 remains open.
+
+### P8.3/P8 close-out
+
+- QAP robust tabu and Or-opt progression packaged.
+- QAP five-seed means 0.000–0.792%; TSP 3-opt negative result retained.
+- Release candidate v0.4.0; phase PR queued.
+
+### P8 close-out
+
+- P8.1 QAP tabu, P8.2 TSP 3-opt evaluation, P8.4 progression guide complete.
+- Clean clone: 178 tests, 96.03% coverage, docs, workflow and benchmark harness pass.
+- P8.3 release candidate v0.4.0 queued for approval.
