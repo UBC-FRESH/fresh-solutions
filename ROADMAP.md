@@ -20,6 +20,7 @@ exists and the maintainer approves it.
 | P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | complete |
 | P7 Convergence protocol | #17 | `feature/p7-convergence` | complete |
 | P8 Competitive neighborhoods | #19 | `feature/p8-competitive` | complete |
+| P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | active |
 
 ## Lifecycle Map
 
@@ -189,3 +190,19 @@ Acceptance criteria:
 - QAP robust tabu improves materially over the swap plateau.
 - TSP 3-opt/LK is evaluated and adopted or rejected with evidence.
 - Every reported assignment replays exactly.
+
+## Phase 9: Evidence maintenance
+
+Parent issue: #25
+Branch: `feature/p9-evidence-maintenance`
+Status: active
+
+Goal: keep the public framework guide in step with certified benchmark evidence without changing solver behaviour.
+
+- [ ] P9.1 Publish certified QAP budget update (#26)
+
+Acceptance criteria:
+
+- Public docs match the certified QAP evidence.
+- No unsupported competitiveness claim.
+- Sphinx, tests, and workflow validator pass.

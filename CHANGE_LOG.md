@@ -94,3 +94,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - P8.1 QAP tabu, P8.2 TSP 3-opt evaluation, P8.4 progression guide complete.
 - Clean clone: 178 tests, 96.03% coverage, docs, workflow and benchmark harness pass.
 - P8.3 release candidate v0.4.0 queued for approval.
+
+### P9.1 certified QAP docs
+
+- Added the certified QAP budget ladder and SciPy FAQ baseline to the public progression guide.
+- Corrected the outdated 10k-fixed limit.
+- No code change or release.

@@ -2,10 +2,12 @@
 
 Status: P8.4 evidence report
 Date: 2026-11-01
-Scope: Fresh Solutions v0.1.0 through v0.3.0
+Scope: Fresh Solutions v0.1.0 through v0.4.0
 Related evidence:
 `fresh-solutions-papers/paper2/evidence/converged-summary.json`,
-`fresh-solutions-papers/paper2/evidence/qap-tabu-summary.json`
+`fresh-solutions-papers/paper2/evidence/qap-tabu-summary.json`,
+`fresh-solutions-papers/paper2/evidence/qap-tabu-converged-summary.json`,
+`fresh-solutions-papers/paper2/evidence/qap-scipy-faq-summary.json`
 
 ## Purpose
 
@@ -54,7 +56,7 @@ Observed:
 Principle: **do not compare an unconverged run to a converged one**. The huge TSP improvement is partly
 the Or-opt neighborhood and partly the elimination of a premature 10k cutoff. The report must say that.
 
-## Stage 2 — QAP robust tabu
+## Stage 2 — QAP robust tabu and budget certification
 
 Changes:
 
@@ -74,6 +76,37 @@ Observed, five seeds:
 Principle: **a domain-specific neighborhood plus tabu memory is qualitatively better than more random
 swaps**. This is the strongest result in the progression. It is QAP-adapter-specific, not a generic
 engine replacement.
+
+### Certified budget update
+
+The 10k table is the first effective tabu stage, not a converged final budget. The papers campaign uses
+a doubling check: a budget is certified when the next doubling improves the five-seed mean by no more
+than 0.10 percentage points, or every seed reaches the known optimum.
+
+| Instance | Certified budget | Mean gap | Worst gap | Next doubling |
+| --- | ---: | ---: | ---: | ---: |
+| tai12a | 10,000 | 0.000% | 0.000% | optimum on all seeds |
+| tai20a | 10,000 | 0.403% | 0.470% | 20k: 0.370% |
+| tai25a | 20,000 | 0.685% | 0.850% | 40k: 0.592% |
+| tai30a | 40,000 | 0.407% | 0.678% | 80k: 0.348% |
+
+The 20k/40k/80k records are retained in the papers evidence. The larger values are not substituted into
+the headline table. This is a budget-stability rule, not a convergence proof.
+
+### Independent baseline
+
+SciPy `quadratic_assignment` (`faq`, `maxiter=10000`, SciPy 1.18.1), five seeds, is an independent
+implementation. It is much faster and much worse than the certified tabu table:
+
+| Instance | SciPy mean gap | Tabu mean gap |
+| --- | ---: | ---: |
+| tai12a | 9.026% | 0.000% |
+| tai20a | 4.642% | 0.403% |
+| tai25a | 4.474% | 0.685% |
+| tai30a | 2.289% | 0.407% |
+
+This is a time-quality comparison, not an equal-budget comparison. SciPy returned the same assignment
+on all five seeds for each instance.
 
 ## Stage 3 — randomized 3-opt, negative result
 
@@ -108,7 +141,7 @@ the default.
 3. Add exact delta/evaluation and replay tests.
 4. Run a convergence pilot; do not tune against an arbitrary short cutoff.
 5. Add a literature-grade neighborhood for the domain.
-6. Compare against a baseline at equal budget.
+6. Compare against a baseline at a stated budget; say whether it is equal-budget or time-quality.
 7. Keep the negative result if the new move does not help.
 
 ## Limits
@@ -116,8 +149,9 @@ the default.
 - Not a claim of state-of-the-art QAP/TSP performance.
 - Not a global-optimality proof.
 - QAP tabu is specialized; TSP still lacks Lin–Kernighan/3-opt adoption.
-- The QAP tabu 10k budget is fixed, not yet patience-converged.
+- The QAP certified budget uses a single-doubling rule; it is not an asymptotic convergence proof.
 - The TSP figures mix Stage 0/1 changes and must not be presented as a clean single-variable ablation.
+- TSP remains Or-opt-only; randomized 3-opt was negative and Lin–Kernighan is not implemented.
 
 ## Publication use
 
@@ -127,4 +161,4 @@ This progression can support a **framework/methods paper**:
 > replay, convergence discipline, and a measured progression from generic moves to domain-specific
 > neighborhoods.
 
-It cannot support a leadership paper until the remaining TSP and budget gaps are closed.
+It cannot support a leadership paper until the TSP neighbourhood and independent-baseline gaps are closed.
