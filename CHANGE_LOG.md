@@ -116,3 +116,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Three instances reach the known optimum; ch150 mean gap 0.383%; 20/20 exact replays.
 - Public progression guide updated with Stage 4 and the extra-budget caveat.
 - No release tag; close-out queues the phase PR.
+
+### v0.5.0 release prep
+
+- Version/citation bumped to 0.5.0.
+- Release notes cover Lin–Kernighan, the five-seed campaign, and the kicks ablation.
+- Release candidate from main `24dc60c`; tag/release approved by maintainer.
