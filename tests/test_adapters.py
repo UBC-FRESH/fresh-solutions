@@ -66,6 +66,16 @@ def test_tsp_two_opt_reverses_a_segment() -> None:
     assert problem.undo(moved, change) == identity
 
 
+def test_tsp_or_opt_moves_and_restores_a_segment() -> None:
+    """An Or-opt change moves a segment and undo restores the tour."""
+    problem = TravellingSalesman([[0, 1, 3, 4], [1, 0, 2, 3], [3, 2, 0, 1], [4, 3, 1, 0]])
+    identity = problem.initial_assignment()
+    change = Change(variable=0, before=0, after=2, kind="oropt", size=2)
+    moved = problem.apply(identity, change)
+    assert moved == {0: 2, 1: 0, 2: 1, 3: 3}
+    assert problem.undo(moved, change) == identity
+
+
 def test_tsp_parser_and_errors(tmp_path: Path) -> None:
     """TSPLIB parsing reads EUC_2D coordinates and rejects malformed files."""
     path = tmp_path / "tsp.tsp"

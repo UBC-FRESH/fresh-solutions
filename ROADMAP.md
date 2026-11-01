@@ -18,6 +18,7 @@ exists and the maintainer approves it.
 | P4 Benchmark adapters and evidence | #11 | `feature/p4-benchmarks` | complete |
 | P5 Release and reproducibility | #13 | `feature/p5-release` | complete |
 | P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | complete |
+| P7 Convergence protocol | #17 | `feature/p7-convergence` | complete |
 
 ## Lifecycle Map
 
@@ -155,3 +156,16 @@ Goal: keep the package useful and the benchmark claims current.
 Acceptance criteria:
 
 - The benchmark suite is current and reproducible.
+
+## Phase 7: Convergence-grade benchmark protocol
+
+Parent issue: #17
+Branch: `feature/p7-convergence`
+Status: complete
+
+Goal: replace arbitrary budgets with a convergence rule and stronger TSP moves.
+
+- [x] P7.1 Define convergence record/stop rule
+- [x] P7.2 Implement TSP Or-opt
+- [x] P7.3 Run convergence pilot
+- [x] P7.4 Freeze the benchmark protocol

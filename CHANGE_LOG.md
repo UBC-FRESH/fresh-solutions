@@ -58,3 +58,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Public berlin52 improved from 17,216 to 9,033 under the stronger settings.
 - Clean checkout: 168 tests, 97.02% coverage, docs and workflow validator green.
 - Released v0.2.0 maintenance update.
+
+### P7 close-out
+
+- Added convergence protocol and TSP Or-opt.
+- Convergence pilot: tai12a local optimum 7.397%; kroA100 optimum; ch150 6.495% at patience stop.
+- 173 tests, docs, workflow validator green; v0.3.0 release.

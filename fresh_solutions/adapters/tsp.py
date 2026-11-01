@@ -153,19 +153,70 @@ class TravellingSalesman:
     def propose(self, assignment: Mapping[int, int], rng: random.Random) -> Change | None:
         """Propose a city swap, or None for a one-city problem."""
         values = validate_permutation(assignment, self.variable_count)
-        variable = rng.randrange(self.variable_count)
-        other = rng.choice(
-            [option for option in range(self.variable_count) if option != values[variable]]
+        if rng.random() < 0.5:
+            variable = rng.randrange(self.variable_count)
+            other = rng.choice(
+                [option for option in range(self.variable_count) if option != values[variable]]
+            )
+            return Change(variable=variable, before=values[variable], after=other, kind="2opt")
+        size = rng.randint(1, min(3, self.variable_count - 1))
+        start = rng.randrange(self.variable_count - size + 1)
+        segment = {values[position] for position in range(start, start + size)}
+        destination = rng.choice(
+            [city for city in range(self.variable_count) if city not in segment]
         )
-        return Change(variable=variable, before=values[variable], after=other)
+        return Change(
+            variable=start,
+            before=values[start],
+            after=destination,
+            kind="oropt",
+            size=size,
+        )
 
     def apply(self, assignment: Mapping[int, int], change: Change) -> dict[int, int]:
-        """Apply a 2-opt segment reversal."""
+        """Apply a 2-opt reversal or Or-opt segment relocation."""
+        if change.kind == "oropt":
+            return self._move_segment(assignment, change, undo=False)
         return reverse_segment(assignment, change, before=True)
 
     def undo(self, assignment: Mapping[int, int], change: Change) -> dict[int, int]:
-        """Undo a 2-opt segment reversal."""
+        """Undo a 2-opt reversal or Or-opt segment relocation."""
+        if change.kind == "oropt":
+            return self._move_segment(assignment, change, undo=True)
         return reverse_segment(assignment, change, before=False)
+
+    def _move_segment(
+        self,
+        assignment: Mapping[int, int],
+        change: Change,
+        *,
+        undo: bool,
+    ) -> dict[int, int]:
+        """Move or restore an Or-opt segment."""
+        values = validate_permutation(assignment, self.variable_count)
+        sequence = [values[position] for position in range(self.variable_count)]
+        if not undo:
+            if sequence[change.variable] != change.before:
+                raise ValueError("change does not match the assignment")
+            start = change.variable
+            segment = sequence[start : start + change.size]
+            remaining = sequence[:start] + sequence[start + change.size :]
+            try:
+                destination = remaining.index(change.after)
+            except ValueError as error:
+                raise ValueError("Or-opt destination is not present") from error
+            return dict(
+                enumerate(remaining[: destination + 1] + segment + remaining[destination + 1 :])
+            )
+        try:
+            current_start = sequence.index(change.before)
+        except ValueError as error:
+            raise ValueError("Or-opt segment is not present") from error
+        segment = sequence[current_start : current_start + change.size]
+        remaining = sequence[:current_start] + sequence[current_start + change.size :]
+        return dict(
+            enumerate(remaining[: change.variable] + segment + remaining[change.variable :])
+        )
 
     def _check_variable(self, variable: int) -> None:
         if variable < 0 or variable >= self.variable_count:
