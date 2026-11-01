@@ -16,7 +16,7 @@ exists and the maintainer approves it.
 | P2 Engine extraction | #7 | `feature/p2-engine-extraction` | complete |
 | P3 CPU/GPU search scheduling | #9 | `feature/p3-search-scheduling` | complete |
 | P4 Benchmark adapters and evidence | #11 | `feature/p4-benchmarks` | complete |
-| P5 Release and reproducibility | TBD | `feature/p5-release` | planned |
+| P5 Release and reproducibility | #13 | `feature/p5-release` | active |
 | P6 Maintain and expand | TBD | `feature/p6-maintain` | planned |
 
 ## Lifecycle Map
@@ -126,9 +126,9 @@ Acceptance criteria:
 
 ## Phase 5: Release and reproducibility
 
-Parent issue: TBD
+Parent issue: #13
 Branch: `feature/p5-release`
-Status: planned
+Status: active
 
 Goal: publish a usable package and reproducible benchmark artifact.
 
