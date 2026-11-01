@@ -11,8 +11,8 @@ exists and the maintainer approves it.
 
 | Phase | Parent issue | Branch | Status |
 | --- | --- | --- | --- |
-| P0 Bootstrap | TBD | `feature/p0-bootstrap` | planned |
-| P1 Problem-adapter contract | TBD | `feature/p1-adapter-contract` | planned |
+| P0 Bootstrap | #1 | `feature/p0-bootstrap` | complete |
+| P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | active |
 | P2 Engine extraction | TBD | `feature/p2-engine-extraction` | planned |
 | P3 CPU/GPU search scheduling | TBD | `feature/p3-search-scheduling` | planned |
 | P4 Benchmark adapters and evidence | TBD | `feature/p4-benchmarks` | planned |
@@ -38,9 +38,9 @@ exists and the maintainer approves it.
 
 ## Phase 0: Bootstrap
 
-Parent issue: TBD
+Parent issue: #1
 Branch: `feature/p0-bootstrap`
-Status: planned
+Status: complete
 
 Goal: establish the public package identity, license, documentation, and reviewable first pull request.
 
@@ -55,9 +55,9 @@ Acceptance criteria:
 
 ## Phase 1: Problem-adapter contract
 
-Parent issue: TBD
+Parent issue: #2
 Branch: `feature/p1-adapter-contract`
-Status: planned
+Status: active
 
 Goal: define the boundary between a problem and the engine before extracting code.
 
