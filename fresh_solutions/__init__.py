@@ -5,7 +5,10 @@ from .adapters import (
     QapTabuResult,
     QuadraticAssignment,
     TravellingSalesman,
+    TspLkConfig,
+    TspLkResult,
     run_qap_tabu,
+    run_tsp_lk,
 )
 from .backend import BatchBackend, CpuBatchBackend
 from .checkpoint import SearchCheckpoint
@@ -43,9 +46,12 @@ __all__ = [
     "SearchConfig",
     "SearchResult",
     "TravellingSalesman",
+    "TspLkConfig",
+    "TspLkResult",
     "run_hybrid_search",
     "run_local_search",
     "run_population_search",
     "run_qap_tabu",
     "run_to_convergence",
+    "run_tsp_lk",
 ]

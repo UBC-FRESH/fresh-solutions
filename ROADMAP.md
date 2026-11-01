@@ -20,7 +20,8 @@ exists and the maintainer approves it.
 | P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | complete |
 | P7 Convergence protocol | #17 | `feature/p7-convergence` | complete |
 | P8 Competitive neighborhoods | #19 | `feature/p8-competitive` | complete |
-| P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | active |
+| P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | complete |
+| P10 TSP Lin–Kernighan | #28 | `feature/p10-tsp-lk` | pr-open |
 
 ## Lifecycle Map
 
@@ -195,14 +196,31 @@ Acceptance criteria:
 
 Parent issue: #25
 Branch: `feature/p9-evidence-maintenance`
-Status: active
+Status: complete
 
 Goal: keep the public framework guide in step with certified benchmark evidence without changing solver behaviour.
 
-- [ ] P9.1 Publish certified QAP budget update (#26)
+- [x] P9.1 Publish certified QAP budget update (#26)
 
 Acceptance criteria:
 
 - Public docs match the certified QAP evidence.
 - No unsupported competitiveness claim.
 - Sphinx, tests, and workflow validator pass.
+
+## Phase 10: TSP Lin–Kernighan
+
+Parent issue: #28
+Branch: `feature/p10-tsp-lk`
+Status: pr-open
+
+Goal: implement a real Lin–Kernighan TSP neighborhood and evaluate it against the converged Or-opt tours.
+
+- [x] P10.1 Implement and evaluate Lin–Kernighan (#29)
+
+Acceptance criteria:
+
+- The LK core performs valid sequential exchanges and returns a valid tour.
+- The iterated LK result improves materially over Or-opt on the TSPLIB set.
+- Every reported tour replays exactly.
+- The dashboard stays green.
