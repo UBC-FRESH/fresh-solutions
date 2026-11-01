@@ -1,0 +1,36 @@
+=== python ===
+Python 3.12.3
+=== pytest ===
+........................................................................ [ 43%]
+........................................................................ [ 86%]
+.......................                                                  [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                                       Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------
+fresh_solutions/__init__.py                    7      0      0      0   100%
+fresh_solutions/adapters/__init__.py           3      0      0      0   100%
+fresh_solutions/adapters/_permutation.py      32      4      8      4    80%   32, 35, 65, 71
+fresh_solutions/adapters/qap.py               74     10     14      2    82%   37, 62, 82-83, 87-90, 157-158
+fresh_solutions/adapters/tsp.py               86      9     28      3    86%   28, 55->69, 67->55, 94-95, 99-102, 168-169
+fresh_solutions/backend.py                    12      0      0      0   100%
+fresh_solutions/benchmark.py                  34      0      4      0   100%
+fresh_solutions/checkpoint.py                 34      0      2      0   100%
+fresh_solutions/contracts.py                  48      0      4      0   100%
+fresh_solutions/engine.py                     76      0     14      0   100%
+fresh_solutions/population.py                 95      0     18      0   100%
+fresh_solutions/toy.py                        80      0     26      0   100%
+scripts/check_workflow.py                    455      0    204      0   100%
+scripts/dashboard.py                          78      0     14      0   100%
+--------------------------------------------------------------------------------------
+TOTAL                                       1114     23    336      9    97%
+Required test coverage of 95% reached. Total coverage: 97.24%
+167 passed in 6.91s
+=== sphinx ===
+=== workflow ===
+0 error(s), 0 warning(s)
+=== benchmarks ===
+wrote 3 records
+=== evidence ===
+[('triangle', 0.0, True), ('tiny-qap', 29.0, True), ('tiny-tsp', 4.0, True)]
