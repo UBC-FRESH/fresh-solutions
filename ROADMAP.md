@@ -17,7 +17,7 @@ exists and the maintainer approves it.
 | P3 CPU/GPU search scheduling | #9 | `feature/p3-search-scheduling` | complete |
 | P4 Benchmark adapters and evidence | #11 | `feature/p4-benchmarks` | complete |
 | P5 Release and reproducibility | #13 | `feature/p5-release` | complete |
-| P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | active |
+| P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | complete |
 
 ## Lifecycle Map
 
@@ -144,13 +144,13 @@ Acceptance criteria:
 
 Parent issue: #15
 Branch: `feature/p6-tsp-2opt`
-Status: active
+Status: complete
 
 Goal: keep the package useful and the benchmark claims current.
 
-- [ ] P6.1 Set a review cadence and triage incoming adapters
-- [ ] P6.2 Re-run the benchmark suite at each release
-- [ ] P6.3 Record retirement or succession decisions
+- [x] P6.1 Implement TSP 2-opt
+- [x] P6.2 Refresh public benchmark evidence
+- [x] P6.3 Release v0.2.0 and review cadence
 
 Acceptance criteria:
 

@@ -51,3 +51,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added release notes, citation, code of conduct, and clean-checkout verification.
 - Clean clone: 167 tests, 97.24% coverage, Sphinx -W, workflow validator 0 errors/warnings, all benchmark records replayed.
 - P5 complete; v0.1.0 release.
+
+### P6 close-out
+
+- Added TSP 2-opt segment reversal and refreshed benchmark evidence.
+- Public berlin52 improved from 17,216 to 9,033 under the stronger settings.
+- Clean checkout: 168 tests, 97.02% coverage, docs and workflow validator green.
+- Released v0.2.0 maintenance update.
