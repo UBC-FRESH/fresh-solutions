@@ -64,3 +64,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added convergence protocol and TSP Or-opt.
 - Convergence pilot: tai12a local optimum 7.397%; kroA100 optimum; ch150 6.495% at patience stop.
 - 173 tests, docs, workflow validator green; v0.3.0 release.
+
+### P8.1 QAP robust tabu
+
+- Added exact-delta robust tabu for QAP and tests.
+- Five-seed 10k results: tai12a 0.000%, tai20a 0.403%, tai25a 0.786%, tai30a 0.792% mean gap.
+- P8 remains active; no release tag.

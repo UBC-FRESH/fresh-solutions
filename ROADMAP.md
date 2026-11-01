@@ -179,6 +179,6 @@ Status: active
 
 Goal: add competitive QAP/TSP neighborhoods and produce converged benchmark evidence.
 
-- [ ] #20 P8.1 QAP robust tabu
+- [x] #20 P8.1 QAP robust tabu
 - [ ] P8.2 TSP 3-opt/LK evaluation
 - [ ] P8.3 Competitive benchmark release
