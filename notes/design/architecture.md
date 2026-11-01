@@ -72,3 +72,16 @@ This is the transferable claim of the papers programme.
 - What is the minimum batched-evaluator contract?
 - Can resident state be optional without losing the architecture's value?
 - How are cache invalidation and provenance represented generically?
+
+## P1 implementation status
+
+The P1 contract is implemented in `fresh_solutions/contracts.py`:
+
+- `Evaluation` carries objective, feasibility, and diagnostics.
+- `Change` is a reversible variable/option move.
+- `EvidenceRecord` serializes and replays an incumbent.
+- `ProblemAdapter` is the runtime-checkable protocol.
+
+`fresh_solutions/toy.py` implements a graph-colouring adapter with options, exact and batched
+evaluation, proposal, apply, and undo. The contract tests replay an evidence record and prove that
+batch and exact paths agree.
