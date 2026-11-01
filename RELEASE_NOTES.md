@@ -1,3 +1,25 @@
+# Fresh Solutions v0.4.0
+
+Date: 2026-11-01
+
+Competitive QAP neighborhood release.
+
+## Changes
+
+- Added QAP robust tabu with exact O(n) swap deltas.
+- Five-seed QAP means: tai12a 0.000%, tai20a 0.403%, tai25a 0.786%, tai30a 0.792%.
+- Retained TSP Or-opt and the convergence protocol.
+- Randomized 3-opt evaluated and rejected; retained as an experimental module.
+- Added the heuristic progression report and public framework guide.
+- Version/citation updated to v0.4.0.
+
+## Known gaps
+
+- QAP tabu is a specialized adapter module, not a generic move.
+- TSP 3-opt/LK is not adopted.
+- No full public benchmark campaign.
+- No tag/release without explicit approval.
+
 # Fresh Solutions v0.3.0
 
 Date: 2026-11-01

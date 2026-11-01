@@ -82,3 +82,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added `notes/reports/heuristic-progression.md` with stage budgets, measured gaps, and negative 3-opt result.
 - Added public Sphinx guide `docs/heuristic-progression.rst`.
 - No release tag; P8.3 remains open.
+
+### P8.3/P8 close-out
+
+- QAP robust tabu and Or-opt progression packaged.
+- QAP five-seed means 0.000–0.792%; TSP 3-opt negative result retained.
+- Release candidate v0.4.0; phase PR queued.
