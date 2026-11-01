@@ -180,5 +180,6 @@ Status: complete
 Goal: add competitive QAP/TSP neighborhoods and produce converged benchmark evidence.
 
 - [x] #20 P8.1 QAP robust tabu
-- [ ] P8.2 TSP 3-opt/LK evaluation
-- [ ] P8.3 Competitive benchmark release
+- [x] #21 P8.2 TSP 3-opt/LK evaluation
+- [x] #22 P8.3 Competitive benchmark release
+- [x] #23 P8.4 Heuristic progression evidence and guide
