@@ -15,7 +15,7 @@ exists and the maintainer approves it.
 | P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | complete |
 | P2 Engine extraction | #7 | `feature/p2-engine-extraction` | complete |
 | P3 CPU/GPU search scheduling | #9 | `feature/p3-search-scheduling` | complete |
-| P4 Benchmark adapters and evidence | TBD | `feature/p4-benchmarks` | planned |
+| P4 Benchmark adapters and evidence | #11 | `feature/p4-benchmarks` | active |
 | P5 Release and reproducibility | TBD | `feature/p5-release` | planned |
 | P6 Maintain and expand | TBD | `feature/p6-maintain` | planned |
 
@@ -108,9 +108,9 @@ Acceptance criteria:
 
 ## Phase 4: Benchmark adapters and evidence
 
-Parent issue: TBD
+Parent issue: #11
 Branch: `feature/p4-benchmarks`
-Status: planned
+Status: active
 
 Goal: prove that the architecture transfers beyond forestry.
 
