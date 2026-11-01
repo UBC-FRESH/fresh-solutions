@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use Fresh Solutions, cite this release."
+title: "Fresh Solutions"
+abstract: "A hybrid metaheuristic engine for hard combinatorial optimisation."
+authors:
+  - name: "UBC FRESH Lab"
+version: 0.1.0
+date-released: 2026-11-01
+license: Apache-2.0
+repository-code: "https://github.com/UBC-FRESH/fresh-solutions"
