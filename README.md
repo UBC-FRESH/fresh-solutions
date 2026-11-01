@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-P4 (benchmark adapters and evidence) is complete: QAP, TSP, and graph-colouring adapters run through the same hybrid engine, with QAPLIB/TSPLIB parsers and replayable evidence. P5 remains planned.
+P6 maintenance is complete: the TSP adapter uses 2-opt segment reversal and the public benchmark evidence is refreshed. v0.2.0 is the current release.
 
 ## Relationship to the papers project
 
