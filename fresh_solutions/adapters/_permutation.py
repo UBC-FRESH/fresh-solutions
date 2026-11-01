@@ -105,3 +105,39 @@ def order_crossover(
     used = set(head)
     tail = [values_right[index] for index in range(size) if values_right[index] not in used]
     return dict(enumerate(head + tail))
+
+
+def reverse_segment(
+    assignment: Mapping[int, int], change: Change, *, before: bool
+) -> dict[int, int]:
+    """Apply or undo a 2-opt segment reversal encoded by two endpoint cities.
+
+    Parameters
+    ----------
+    assignment : mapping of int to int
+        Current permutation.
+    change : Change
+        Endpoint change. ``variable`` is the segment start and ``after`` is the other
+        endpoint city when applying.
+    before : bool
+        True to apply, False to undo.
+
+    Returns
+    -------
+    dict of int to int
+        New permutation.
+    """
+    values = dict(assignment)
+    expected = change.before if before else change.after
+    if values[change.variable] != expected:
+        raise ValueError("change does not match the assignment")
+    other_city = change.after if before else change.before
+    end = next((position for position, city in values.items() if city == other_city), None)
+    if end is None:
+        raise ValueError("2-opt endpoint is not present")
+    start = change.variable
+    low, high = (start, end) if start <= end else (end, start)
+    segment = [values[position] for position in range(low, high + 1)]
+    for offset, city in enumerate(reversed(segment)):
+        values[low + offset] = city
+    return values

@@ -8,7 +8,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 from ..contracts import Change, Evaluation
-from ._permutation import order_crossover, swap, validate_permutation
+from ._permutation import order_crossover, reverse_segment, validate_permutation
 
 
 class TravellingSalesman:
@@ -122,7 +122,10 @@ class TravellingSalesman:
         for variable in range(self.variable_count):
             if rng.random() < rate:
                 other = rng.randrange(self.variable_count)
-                values[variable], values[other] = values[other], values[variable]
+                start, end = (variable, other) if variable <= other else (other, variable)
+                segment = [values[position] for position in range(start, end + 1)]
+                for offset, city in enumerate(reversed(segment)):
+                    values[start + offset] = city
         return values
 
     def crossover(
@@ -157,12 +160,12 @@ class TravellingSalesman:
         return Change(variable=variable, before=values[variable], after=other)
 
     def apply(self, assignment: Mapping[int, int], change: Change) -> dict[int, int]:
-        """Apply a city swap."""
-        return swap(assignment, change, before=True)
+        """Apply a 2-opt segment reversal."""
+        return reverse_segment(assignment, change, before=True)
 
     def undo(self, assignment: Mapping[int, int], change: Change) -> dict[int, int]:
-        """Undo a city swap."""
-        return swap(assignment, change, before=False)
+        """Undo a 2-opt segment reversal."""
+        return reverse_segment(assignment, change, before=False)
 
     def _check_variable(self, variable: int) -> None:
         if variable < 0 or variable >= self.variable_count:

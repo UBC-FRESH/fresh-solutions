@@ -6,8 +6,13 @@ import random
 from pathlib import Path
 
 import pytest
-
-from fresh_solutions import GraphColouring, PopulationConfig, SearchConfig, run_hybrid_search
+from fresh_solutions import (
+    Change,
+    GraphColouring,
+    PopulationConfig,
+    SearchConfig,
+    run_hybrid_search,
+)
 from fresh_solutions.adapters import QuadraticAssignment, TravellingSalesman
 
 
@@ -29,14 +34,14 @@ def test_qap_parser_and_errors(tmp_path: Path) -> None:
     path.write_text("2\n0 2\n3 0\n0 5\n7 0\n", encoding="utf-8")
     problem = QuadraticAssignment.from_qaplib(path)
     assert problem.variable_count == 2
+    bad = tmp_path / "bad.dat"
+    bad.write_text("2\n1 2\n", encoding="utf-8")
     with pytest.raises(ValueError, match="wrong number"):
-        bad = tmp_path / "bad.dat"
-        bad.write_text("2\n1 2\n", encoding="utf-8")
         QuadraticAssignment.from_qaplib(bad)
+    bad2 = tmp_path / "bad2.dat"
+    bad2.write_text("x\n", encoding="utf-8")
     with pytest.raises(ValueError, match="non-numeric"):
-        bad = tmp_path / "bad2.dat"
-        bad.write_text("x\n", encoding="utf-8")
-        QuadraticAssignment.from_qaplib(bad)
+        QuadraticAssignment.from_qaplib(bad2)
 
 
 def test_tsp_objective_swap_and_batch() -> None:
@@ -49,6 +54,16 @@ def test_tsp_objective_swap_and_batch() -> None:
     moved = problem.apply(identity, change)
     assert problem.undo(moved, change) == identity
     assert problem.evaluate_batch([identity])[0].objective == 6.0
+
+
+def test_tsp_two_opt_reverses_a_segment() -> None:
+    """A TSP change reverses a tour segment and undo restores it."""
+    problem = TravellingSalesman([[0, 1, 3, 4], [1, 0, 2, 3], [3, 2, 0, 1], [4, 3, 1, 0]])
+    identity = problem.initial_assignment()
+    change = Change(variable=0, before=0, after=2)
+    moved = problem.apply(identity, change)
+    assert moved == {0: 2, 1: 1, 2: 0, 3: 3}
+    assert problem.undo(moved, change) == identity
 
 
 def test_tsp_parser_and_errors(tmp_path: Path) -> None:

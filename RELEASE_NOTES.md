@@ -1,3 +1,23 @@
+# Fresh Solutions v0.2.0
+
+Date: 2026-11-01
+
+Maintenance release.
+
+## Changes
+
+- TSP adapter now uses 2-opt segment reversal instead of swap-only moves.
+- TSP mutation uses segment reversal.
+- Public `berlin52` evidence improves from 17,216 (128% gap) to 9,033 (19.8% gap)
+  at population 32, 50 generations, 3,000 local iterations.
+- Version and citation updated to v0.2.0.
+
+## Known gaps
+
+- Still a toy/public-instance evidence pass, not a full benchmark campaign.
+- QAP is within about 7.4% of the tai12a optimum with the stronger settings.
+- CPU-only backend; no production GPU kernel.
+
 # Fresh Solutions v0.1.0
 
 Date: 2026-11-01
