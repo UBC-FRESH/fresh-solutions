@@ -70,3 +70,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added exact-delta robust tabu for QAP and tests.
 - Five-seed 10k results: tai12a 0.000%, tai20a 0.403%, tai25a 0.786%, tai30a 0.792% mean gap.
 - P8 remains active; no release tag.
+
+### P8.2 TSP 3-opt evaluation
+
+- Added experimental randomized 3-opt and exact-replay tests.
+- No improvement over converged Or-opt on berlin52/kroA100/ch150; not adopted.
+- P8.2 complete with a recorded limit; P8.3 remains open.
