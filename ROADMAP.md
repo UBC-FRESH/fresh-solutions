@@ -17,7 +17,7 @@ exists and the maintainer approves it.
 | P3 CPU/GPU search scheduling | #9 | `feature/p3-search-scheduling` | complete |
 | P4 Benchmark adapters and evidence | #11 | `feature/p4-benchmarks` | complete |
 | P5 Release and reproducibility | #13 | `feature/p5-release` | complete |
-| P6 Maintain and expand | TBD | `feature/p6-maintain` | planned |
+| P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | active |
 
 ## Lifecycle Map
 
@@ -142,9 +142,9 @@ Acceptance criteria:
 
 ## Phase 6: Maintain and expand
 
-Parent issue: TBD
-Branch: `feature/p6-maintain`
-Status: planned
+Parent issue: #15
+Branch: `feature/p6-tsp-2opt`
+Status: active
 
 Goal: keep the package useful and the benchmark claims current.
 
