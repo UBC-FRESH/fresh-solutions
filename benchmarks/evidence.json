@@ -1,0 +1,143 @@
+[
+  {
+    "instance": "triangle",
+    "adapter": "graph-colouring-v1",
+    "population": {
+      "population": 6,
+      "generations": 5,
+      "seed": 3,
+      "mutation_rate": 0.05,
+      "elite_fraction": 0.1,
+      "tournament_size": 3,
+      "random_fraction": 0.2
+    },
+    "local": {
+      "iterations": 5,
+      "seed": 3,
+      "temperature": 1.0,
+      "cooling": 0.999
+    },
+    "result": {
+      "assignment": {
+        "0": 1,
+        "1": 0,
+        "2": 2
+      },
+      "objective": 0.0,
+      "feasible": true,
+      "evaluations": 42,
+      "population_generations": 5,
+      "local_iterations": 5,
+      "history": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "metadata": {
+      "family": "graph-colouring"
+    }
+  },
+  {
+    "instance": "tiny-qap",
+    "adapter": "qap-v1",
+    "population": {
+      "population": 6,
+      "generations": 5,
+      "seed": 3,
+      "mutation_rate": 0.05,
+      "elite_fraction": 0.1,
+      "tournament_size": 3,
+      "random_fraction": 0.2
+    },
+    "local": {
+      "iterations": 5,
+      "seed": 3,
+      "temperature": 1.0,
+      "cooling": 0.999
+    },
+    "result": {
+      "assignment": {
+        "0": 1,
+        "1": 0
+      },
+      "objective": 29.0,
+      "feasible": true,
+      "evaluations": 42,
+      "population_generations": 5,
+      "local_iterations": 5,
+      "history": [
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0,
+        29.0
+      ]
+    },
+    "metadata": {
+      "family": "qap"
+    }
+  },
+  {
+    "instance": "tiny-tsp",
+    "adapter": "tsp-v1",
+    "population": {
+      "population": 6,
+      "generations": 5,
+      "seed": 3,
+      "mutation_rate": 0.05,
+      "elite_fraction": 0.1,
+      "tournament_size": 3,
+      "random_fraction": 0.2
+    },
+    "local": {
+      "iterations": 5,
+      "seed": 3,
+      "temperature": 1.0,
+      "cooling": 0.999
+    },
+    "result": {
+      "assignment": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3
+      },
+      "objective": 4.0,
+      "feasible": true,
+      "evaluations": 42,
+      "population_generations": 5,
+      "local_iterations": 5,
+      "history": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ]
+    },
+    "metadata": {
+      "family": "tsp"
+    }
+  }
+]

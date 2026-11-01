@@ -14,3 +14,4 @@ whenever you add a module to the project.
    contracts
    engine
    search
+   benchmarks

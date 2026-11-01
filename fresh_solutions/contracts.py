@@ -147,6 +147,28 @@ class ProblemAdapter(Protocol):
         """Return a complete starting assignment."""
         ...
 
+    def random_assignment(self, rng: random.Random) -> dict[int, int]:
+        """Return a random valid assignment."""
+        ...
+
+    def mutate(
+        self,
+        assignment: Mapping[int, int],
+        rate: float,
+        rng: random.Random,
+    ) -> dict[int, int]:
+        """Return a valid mutated assignment."""
+        ...
+
+    def crossover(
+        self,
+        left: Mapping[int, int],
+        right: Mapping[int, int],
+        rng: random.Random,
+    ) -> dict[int, int]:
+        """Return a valid child assignment."""
+        ...
+
     def evaluate(self, assignment: Mapping[int, int]) -> Evaluation:
         """Return the exact objective and feasibility of one assignment."""
         ...

@@ -110,33 +110,7 @@ def _score(evaluation: Evaluation) -> tuple[bool, float]:
 
 
 def _random_assignment(adapter: ProblemAdapter, rng: random.Random) -> dict[int, int]:
-    return {
-        variable: rng.randrange(adapter.option_count(variable))
-        for variable in range(adapter.variable_count)
-    }
-
-
-def _mutate(
-    assignment: Mapping[int, int],
-    adapter: ProblemAdapter,
-    rate: float,
-    rng: random.Random,
-) -> dict[int, int]:
-    child = dict(assignment)
-    for variable in range(adapter.variable_count):
-        if rng.random() < rate:
-            child[variable] = rng.randrange(adapter.option_count(variable))
-    return child
-
-
-def _crossover(
-    left: Mapping[int, int],
-    right: Mapping[int, int],
-    rng: random.Random,
-) -> dict[int, int]:
-    return {
-        variable: left[variable] if rng.random() < 0.5 else right[variable] for variable in left
-    }
+    return adapter.random_assignment(rng)
 
 
 def _tournament(
@@ -178,7 +152,7 @@ def run_population_search(
     mutant_count = config.population - 1 - random_count
     population: list[dict[int, int]] = [dict(seed_assignment)]
     population.extend(
-        _mutate(seed_assignment, adapter, config.mutation_rate, rng) for _ in range(mutant_count)
+        adapter.mutate(seed_assignment, config.mutation_rate, rng) for _ in range(mutant_count)
     )
     population.extend(_random_assignment(adapter, rng) for _ in range(random_count))
     scores = evaluator.evaluate_batch(population)
@@ -197,8 +171,8 @@ def run_population_search(
         while len(children) < config.population:
             left = _tournament(population, scores, config.tournament_size, rng)
             right = _tournament(population, scores, config.tournament_size, rng)
-            child = _crossover(left, right, rng)
-            children.append(_mutate(child, adapter, config.mutation_rate, rng))
+            child = adapter.crossover(left, right, rng)
+            children.append(adapter.mutate(child, config.mutation_rate, rng))
         population = children
         scores = evaluator.evaluate_batch(population)
         evaluations += len(population)
