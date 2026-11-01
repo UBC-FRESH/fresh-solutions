@@ -19,7 +19,7 @@ exists and the maintainer approves it.
 | P5 Release and reproducibility | #13 | `feature/p5-release` | complete |
 | P6 Maintain and expand | #15 | `feature/p6-tsp-2opt` | complete |
 | P7 Convergence protocol | #17 | `feature/p7-convergence` | complete |
-| P8 Competitive neighborhoods | #19 | `feature/p8-competitive` | active |
+| P8 Competitive neighborhoods | #19 | `feature/p8-competitive` | complete |
 
 ## Lifecycle Map
 
@@ -175,7 +175,7 @@ Goal: replace arbitrary budgets with a convergence rule and stronger TSP moves.
 
 Parent issue: #19
 Branch: `feature/p8-competitive`
-Status: active
+Status: complete
 
 Goal: add competitive QAP/TSP neighborhoods and produce converged benchmark evidence.
 

@@ -88,3 +88,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - QAP robust tabu and Or-opt progression packaged.
 - QAP five-seed means 0.000–0.792%; TSP 3-opt negative result retained.
 - Release candidate v0.4.0; phase PR queued.
+
+### P8 close-out
+
+- P8.1 QAP tabu, P8.2 TSP 3-opt evaluation, P8.4 progression guide complete.
+- Clean clone: 178 tests, 96.03% coverage, docs, workflow and benchmark harness pass.
+- P8.3 release candidate v0.4.0 queued for approval.
