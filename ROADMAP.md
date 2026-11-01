@@ -183,3 +183,9 @@ Goal: add competitive QAP/TSP neighborhoods and produce converged benchmark evid
 - [x] #21 P8.2 TSP 3-opt/LK evaluation
 - [x] #22 P8.3 Competitive benchmark release
 - [x] #23 P8.4 Heuristic progression evidence and guide
+
+Acceptance criteria:
+
+- QAP robust tabu improves materially over the swap plateau.
+- TSP 3-opt/LK is evaluated and adopted or rejected with evidence.
+- Every reported assignment replays exactly.
