@@ -45,3 +45,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added a replayable benchmark-record harness and evidence for graph colouring, QAP, and TSP.
 - 167 tests pass at 97% coverage; lint, types, docs, and workflow validator pass.
 - P4 is complete; P5 release remains planned.
+
+### P5 close-out
+
+- Added release notes, citation, code of conduct, and clean-checkout verification.
+- Clean clone: 167 tests, 97.24% coverage, Sphinx -W, workflow validator 0 errors/warnings, all benchmark records replayed.
+- P5 complete; v0.1.0 release.
