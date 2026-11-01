@@ -34,10 +34,10 @@ def _coordinate_distance(
     if edge_type == "GEO":
         pi = 3.141592
         radius = 6378.388
-        latitude_first = pi * (first[0] + 5.0 * first[1] / 3.0) / 180.0
-        latitude_second = pi * (second[0] + 5.0 * second[1] / 3.0) / 180.0
-        longitude_first = pi * (second[0] + 5.0 * second[1] / 3.0) / 180.0
-        longitude_second = pi * (first[0] + 5.0 * first[1] / 3.0) / 180.0
+        latitude_first = pi * (first[0] + 5.0 * (first[0] - int(first[0])) / 3.0) / 180.0
+        latitude_second = pi * (second[0] + 5.0 * (second[0] - int(second[0])) / 3.0) / 180.0
+        longitude_first = pi * (first[1] + 5.0 * (first[1] - int(first[1])) / 3.0) / 180.0
+        longitude_second = pi * (second[1] + 5.0 * (second[1] - int(second[1])) / 3.0) / 180.0
         q1 = math.cos(longitude_first - longitude_second)
         q2 = math.cos(latitude_first - latitude_second)
         q3 = math.cos(latitude_first + latitude_second)
