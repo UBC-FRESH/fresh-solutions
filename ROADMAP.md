@@ -14,7 +14,7 @@ exists and the maintainer approves it.
 | P0 Bootstrap | #1 | `feature/p0-bootstrap` | complete |
 | P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | complete |
 | P2 Engine extraction | #7 | `feature/p2-engine-extraction` | complete |
-| P3 CPU/GPU search scheduling | TBD | `feature/p3-search-scheduling` | planned |
+| P3 CPU/GPU search scheduling | #9 | `feature/p3-search-scheduling` | complete |
 | P4 Benchmark adapters and evidence | TBD | `feature/p4-benchmarks` | planned |
 | P5 Release and reproducibility | TBD | `feature/p5-release` | planned |
 | P6 Maintain and expand | TBD | `feature/p6-maintain` | planned |
@@ -90,16 +90,16 @@ Acceptance criteria:
 
 ## Phase 3: CPU/GPU search scheduling
 
-Parent issue: TBD
+Parent issue: #9
 Branch: `feature/p3-search-scheduling`
-Status: planned
+Status: complete
 
 Goal: support the hybrid CPU/GPU execution pattern generically.
 
-- [ ] P3.1 Define resident GPU effect/state representation
-- [ ] P3.2 Implement batched population evaluation
-- [ ] P3.3 Implement exact local refinement handoff
-- [ ] P3.4 Add checkpointing, seed reset, and replay
+- [x] P3.1 Define resident GPU effect/state representation
+- [x] P3.2 Implement batched population evaluation
+- [x] P3.3 Implement exact local refinement handoff
+- [x] P3.4 Add checkpointing, seed reset, and replay
 
 Acceptance criteria:
 
