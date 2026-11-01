@@ -24,3 +24,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - P1 is complete; P2 engine extraction remains planned.
 
 - P1 roadmap corrected to match the completed toy-adapter task.
+
+### P2 close-out
+
+- Added the exact CPU search engine and resident-assignment primitive.
+- Ran graph colouring end to end with no WS4 dependency.
+- 150 tests, 100% branch coverage, ruff, strict mypy, Sphinx -W, and workflow validator pass.
+- P2 is complete; P3 CPU/GPU scheduling remains planned.

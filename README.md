@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-P1 (problem-adapter contract) is complete. P2 remains planned; `ROADMAP.md` contains the plan and the GitHub issues carry live status.
+P2 (engine extraction) is complete: the exact CPU search and resident-assignment primitives run on a WS4-free graph-colouring adapter. P3 remains planned.
 
 ## Relationship to the papers project
 

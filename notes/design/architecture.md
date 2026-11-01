@@ -85,3 +85,14 @@ The P1 contract is implemented in `fresh_solutions/contracts.py`:
 `fresh_solutions/toy.py` implements a graph-colouring adapter with options, exact and batched
 evaluation, proposal, apply, and undo. The contract tests replay an evidence record and prove that
 batch and exact paths agree.
+
+## P2 implementation status
+
+The generic exact CPU engine is implemented in `fresh_solutions/engine.py`:
+
+- `SearchConfig` and `SearchResult`;
+- `ResidentState` protocol and `ResidentAssignment`;
+- `run_local_search`, using only `ProblemAdapter` propose/apply/undo/evaluate.
+
+The graph-colouring adapter runs end to end through the engine and finds a feasible colouring. The core
+package imports no WS4 module.
