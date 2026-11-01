@@ -13,3 +13,9 @@ project grows.
    :caption: API
 
    api/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Design
+
+   heuristic-progression

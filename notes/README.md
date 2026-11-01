@@ -10,3 +10,5 @@ Notes are the persistent, agent-friendly context for this project. They hold wha
 Keep private material out of this directory.
 
 - `design/architecture.md`: adapter boundary, hybrid handoff, and contract tests.
+
+- `reports/heuristic-progression.md`: staged design/evidence progression from generic moves to QAP tabu and Or-opt, including negative 3-opt result.
