@@ -96,3 +96,10 @@ The generic exact CPU engine is implemented in `fresh_solutions/engine.py`:
 
 The graph-colouring adapter runs end to end through the engine and finds a feasible colouring. The core
 package imports no WS4 module.
+
+## P3 implementation status
+
+`fresh_solutions/backend.py` defines the batched-evaluation protocol; `CpuBatchBackend` is the exact
+CPU implementation. `fresh_solutions/population.py` adds batched population search and a hybrid
+population-to-local handoff. `fresh_solutions/checkpoint.py` adds checkpoint save/load/replay.
+All paths are backend-neutral and contain no WS4 import.

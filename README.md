@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-P2 (engine extraction) is complete: the exact CPU search and resident-assignment primitives run on a WS4-free graph-colouring adapter. P3 remains planned.
+P3 (CPU/GPU search scheduling) is complete: batched population search, backend abstraction, exact hybrid handoff, and checkpoint replay run on the WS4-free graph-colouring adapter. P4 remains planned.
 
 ## Relationship to the papers project
 

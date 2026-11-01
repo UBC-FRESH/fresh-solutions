@@ -31,3 +31,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Ran graph colouring end to end with no WS4 dependency.
 - 150 tests, 100% branch coverage, ruff, strict mypy, Sphinx -W, and workflow validator pass.
 - P2 is complete; P3 CPU/GPU scheduling remains planned.
+
+### P3 close-out
+
+- Added backend-neutral batched population search, exact hybrid handoff, and checkpoint replay.
+- Graph colouring runs through CPU, population, and hybrid paths.
+- 157 tests, 100% branch coverage, ruff, strict mypy, Sphinx -W, and workflow validator pass.
+- P3 is complete; P4 benchmark adapters remain planned.

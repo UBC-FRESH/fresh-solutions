@@ -140,7 +140,12 @@ class ResidentAssignment:
         return self.adapter.evaluate(self._assignment)
 
 
-def run_local_search(adapter: ProblemAdapter, config: SearchConfig) -> SearchResult:
+def run_local_search(
+    adapter: ProblemAdapter,
+    config: SearchConfig,
+    *,
+    initial: Mapping[int, int] | None = None,
+) -> SearchResult:
     """Run exact simulated-annealing local search over adapter proposals.
 
     Parameters
@@ -149,6 +154,8 @@ def run_local_search(adapter: ProblemAdapter, config: SearchConfig) -> SearchRes
         Problem adapter supplying options, proposals, exact evaluation, and apply/undo.
     config : SearchConfig
         Search settings.
+    initial : mapping of int to int or None, optional
+        Starting assignment. None uses the adapter's initial assignment.
 
     Returns
     -------
@@ -156,7 +163,7 @@ def run_local_search(adapter: ProblemAdapter, config: SearchConfig) -> SearchRes
         Best assignment, exact objective, feasibility, counters, and history.
     """
     rng = random.Random(config.seed)
-    state = ResidentAssignment(adapter)
+    state = ResidentAssignment(adapter, initial)
     current = state.evaluate()
     best = current
     best_assignment = state.assignment
