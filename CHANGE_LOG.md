@@ -38,3 +38,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Graph colouring runs through CPU, population, and hybrid paths.
 - 157 tests, 100% branch coverage, ruff, strict mypy, Sphinx -W, and workflow validator pass.
 - P3 is complete; P4 benchmark adapters remain planned.
+
+### P4 close-out
+
+- Added QAP and TSP public-library adapters with QAPLIB/TSPLIB parsers.
+- Added a replayable benchmark-record harness and evidence for graph colouring, QAP, and TSP.
+- 167 tests pass at 97% coverage; lint, types, docs, and workflow validator pass.
+- P4 is complete; P5 release remains planned.

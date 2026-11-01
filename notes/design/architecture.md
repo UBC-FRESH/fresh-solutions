@@ -103,3 +103,10 @@ package imports no WS4 module.
 CPU implementation. `fresh_solutions/population.py` adds batched population search and a hybrid
 population-to-local handoff. `fresh_solutions/checkpoint.py` adds checkpoint save/load/replay.
 All paths are backend-neutral and contain no WS4 import.
+
+## P4 implementation status
+
+Public-library adapters are implemented for QAP and TSP, with graph colouring from P1. The QAPLIB and
+TSPLIB parsers live under `fresh_solutions/adapters/`. `fresh_solutions/benchmark.py` captures
+replayable hybrid-search records, and `benchmarks/run_benchmarks.py` writes
+`benchmarks/evidence.json` for all three families.

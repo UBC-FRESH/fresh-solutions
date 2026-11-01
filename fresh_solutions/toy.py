@@ -62,6 +62,37 @@ class GraphColouring:
         """Return every node assigned to the first colour."""
         return dict.fromkeys(range(self.node_count), 0)
 
+    def random_assignment(self, rng: random.Random) -> dict[int, int]:
+        """Return a random colour assignment."""
+        return {node: rng.randrange(len(self.colours)) for node in range(self.node_count)}
+
+    def mutate(
+        self,
+        assignment: Mapping[int, int],
+        rate: float,
+        rng: random.Random,
+    ) -> dict[int, int]:
+        """Return a mutation that may change any node colour."""
+        values = self._assignment(assignment)
+        for node in range(self.node_count):
+            if rng.random() < rate:
+                values[node] = rng.randrange(len(self.colours))
+        return values
+
+    def crossover(
+        self,
+        left: Mapping[int, int],
+        right: Mapping[int, int],
+        rng: random.Random,
+    ) -> dict[int, int]:
+        """Return a uniform crossover of two colourings."""
+        left_values = self._assignment(left)
+        right_values = self._assignment(right)
+        return {
+            node: left_values[node] if rng.random() < 0.5 else right_values[node]
+            for node in range(self.node_count)
+        }
+
     def evaluate(self, assignment: Mapping[int, int]) -> Evaluation:
         """Return the number of monochromatic edges as the objective."""
         values = self._assignment(assignment)

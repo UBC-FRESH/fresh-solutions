@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-P3 (CPU/GPU search scheduling) is complete: batched population search, backend abstraction, exact hybrid handoff, and checkpoint replay run on the WS4-free graph-colouring adapter. P4 remains planned.
+P4 (benchmark adapters and evidence) is complete: QAP, TSP, and graph-colouring adapters run through the same hybrid engine, with QAPLIB/TSPLIB parsers and replayable evidence. P5 remains planned.
 
 ## Relationship to the papers project
 
