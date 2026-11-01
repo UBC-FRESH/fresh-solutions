@@ -28,8 +28,8 @@ improve because the swap neighbourhood is still the limitation.
 The TSP change combines two effects — a stronger move and removal of a premature cutoff — so it is not
 a clean ablation.
 
-Stage 2: QAP robust tabu
-------------------------
+Stage 2: QAP robust tabu and budget certification
+--------------------------------------------------
 
 An exact O(n) swap-delta, tabu memory, and aspiration produce five-seed QAP mean gaps of:
 
@@ -52,6 +52,41 @@ An exact O(n) swap-delta, tabu memory, and aspiration produce five-seed QAP mean
      - 0.792%
      - 1.139%
 
+The 10k table is the first effective tabu stage, not the final budget. The certified budget is the
+smallest budget whose next doubling improves the five-seed mean by at most 0.10 percentage points, or
+where every seed reaches the known optimum:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instance
+     - Certified budget
+     - Mean gap
+     - Next doubling
+   * - ``tai12a``
+     - 10,000
+     - 0.000%
+     - optimum on all seeds
+   * - ``tai20a``
+     - 10,000
+     - 0.403%
+     - 20k: 0.370%
+   * - ``tai25a``
+     - 20,000
+     - 0.685%
+     - 40k: 0.592%
+   * - ``tai30a``
+     - 40,000
+     - 0.407%
+     - 80k: 0.348%
+
+The larger values are retained for transparency but are not used in the headline table. This is a
+budget-stability rule, not a convergence proof.
+
+An independent SciPy ``quadratic_assignment`` FAQ baseline (``maxiter=10000``, SciPy 1.18.1) is much
+faster and much worse: mean gaps 9.026%, 4.642%, 4.474%, and 2.289% on the four instances. This is a
+time-quality comparison, not an equal-budget comparison.
+
 The tabu module is adapter-specific. It is not a replacement for the generic engine.
 
 Stage 3: randomized 3-opt, negative result
@@ -69,9 +104,12 @@ How to use the framework
 3. Add exact evaluation/delta and replay tests.
 4. Apply a convergence stopping rule; do not compare against a premature cutoff.
 5. Add a literature-grade neighbourhood for the problem domain.
-6. Compare against an independent baseline at equal budget.
+6. Compare against an independent baseline at a stated budget; say whether it is equal-budget or time-quality.
 7. Keep negative results and report the budget.
 
 The framework supplies the adapter boundary, exact resident state, batch/population search, hybrid
 handoff, checkpoint replay, convergence records, and benchmark evidence. It does not supply a
 domain-specific neighbourhood; that is the adapter author's contribution.
+
+TSP remains Or-opt-only. Randomized 3-opt was negative and is not the default; Lin–Kernighan is not
+implemented. No global-optimality or universal-dominance claim is made.
