@@ -109,3 +109,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Extended the public API exports and docs page.
 - Dashboard green: 186 tests, 95.21% coverage, all gates pass.
 - No release tag; TSPLIB campaign is next.
+
+### P10.1 LK evidence and docs
+
+- Five-seed iterated LK campaign from converged Or-opt tours.
+- Three instances reach the known optimum; ch150 mean gap 0.383%; 20/20 exact replays.
+- Public progression guide updated with Stage 4 and the extra-budget caveat.
+- No release tag; close-out queues the phase PR.

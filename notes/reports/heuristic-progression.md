@@ -122,6 +122,21 @@ Principle: **not every literature-inspired move improves a converged incumbent**
 sampling is not Lin–Kernighan. The negative result is retained; the implementation is not adopted as
 the default.
 
+## Stage 4 — iterated Lin–Kernighan
+
+The later P10.1 implementation adds a candidate-list Lin–Kernighan edge-exchange core and
+deterministic double-bridge kicks. Starting from the converged Or-opt tours, five seeds give:
+
+| Instance | Or-opt mean gap | LK mean gap | LK worst gap | LK mean wall (s) |
+| --- | ---: | ---: | ---: | ---: |
+| berlin52 | 6.433% | 0.000% | 0.000% | 12.18 |
+| kroA100 | 7.323% | 0.000% | 0.000% | 8.46 |
+| kroB100 | 3.696% | 0.000% | 0.000% | 11.67 |
+| ch150 | 8.229% | 0.383% | 0.475% | 11.59 |
+
+All 20 tours replay exactly. This is a **quality-at-additional-cost** result: the LK path receives extra
+local-search time, so it is not an equal-budget ablation. It is not a state-of-the-art claim.
+
 ## What the framework actually provides
 
 1. **A stable adapter boundary.** A user supplies variables, options, exact/batched evaluation,
