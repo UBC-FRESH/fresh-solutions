@@ -123,3 +123,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Release notes cover Lin–Kernighan, the five-seed campaign, and the kicks ablation.
 - Release candidate from main `24dc60c`; tag/release approved by maintainer.
 - Extended TSPLIB parsing to ATT, GEO, and explicit matrix formats for the broad benchmark panel.
+
+### v0.5.1 TSPLIB GEO fix
+
+- Fixed GEO latitude/longitude conversion in the TSPLIB parser.
+- Added ATT/GEO/EXPLICIT parser tests.
+- Broad-panel results must be rerun against v0.5.1; v0.5.0 GEO numbers are invalid.

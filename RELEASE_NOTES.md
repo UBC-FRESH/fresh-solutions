@@ -1,3 +1,21 @@
+# Fresh Solutions v0.5.1
+
+Date: 2026-11-01
+
+TSPLIB parsing patch.
+
+## Changes
+
+- Corrected the TSPLIB `GEO` latitude/longitude conversion.
+- Added `ATT`, `GEO`, and explicit symmetric-matrix parsing for the broad benchmark panel.
+- Added parser regression tests for `EUC_2D`, `CEIL_2D`, `ATT`, `GEO`, and explicit formats.
+- Version/citation updated to v0.5.1.
+
+## Known gaps
+
+- GEO distances are now checked on small fixtures; full-panel gaps are still being rerun.
+- No state-of-the-art claim.
+
 # Fresh Solutions v0.5.0
 
 Date: 2026-11-01
