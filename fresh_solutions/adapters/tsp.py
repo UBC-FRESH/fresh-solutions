@@ -11,6 +11,77 @@ from ..contracts import Change, Evaluation
 from ._permutation import order_crossover, reverse_segment, validate_permutation
 
 
+def _nint(value: float) -> float:
+    """Return the TSPLIB nearest-integer convention."""
+    return float(int(value + 0.5))
+
+
+def _coordinate_distance(
+    edge_type: str,
+    first: tuple[float, float],
+    second: tuple[float, float],
+) -> float:
+    """Return one TSPLIB coordinate distance."""
+    dx = first[0] - second[0]
+    dy = first[1] - second[1]
+    if edge_type == "EUC_2D":
+        return _nint(math.hypot(dx, dy))
+    if edge_type == "CEIL_2D":
+        return float(math.ceil(math.hypot(dx, dy)))
+    if edge_type == "ATT":
+        candidate = _nint(math.sqrt((dx * dx + dy * dy) / 10.0))
+        return candidate + 1.0 if candidate < math.sqrt((dx * dx + dy * dy) / 10.0) else candidate
+    if edge_type == "GEO":
+        pi = 3.141592
+        radius = 6378.388
+        latitude_first = pi * (first[0] + 5.0 * first[1] / 3.0) / 180.0
+        latitude_second = pi * (second[0] + 5.0 * second[1] / 3.0) / 180.0
+        longitude_first = pi * (second[0] + 5.0 * second[1] / 3.0) / 180.0
+        longitude_second = pi * (first[0] + 5.0 * first[1] / 3.0) / 180.0
+        q1 = math.cos(longitude_first - longitude_second)
+        q2 = math.cos(latitude_first - latitude_second)
+        q3 = math.cos(latitude_first + latitude_second)
+        return float(int(radius * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0))
+    raise ValueError(f"unsupported coordinate edge type: {edge_type}")
+
+
+def _explicit_distances(
+    values: list[float],
+    dimension: int,
+    edge_format: str,
+) -> list[list[float]]:
+    """Build a symmetric matrix from an explicit TSPLIB section."""
+    matrix = [[0.0 for _ in range(dimension)] for _ in range(dimension)]
+    if edge_format == "FULL_MATRIX":
+        if len(values) != dimension * dimension:
+            raise ValueError("explicit matrix has the wrong number of values")
+        for first in range(dimension):
+            for second in range(dimension):
+                matrix[first][second] = values[first * dimension + second]
+        return matrix
+    index = 0
+    formats = {
+        "LOWER_DIAG_ROW": lambda first, second: second <= first,
+        "UPPER_DIAG_ROW": lambda first, second: second >= first,
+        "LOWER_ROW": lambda first, second: second < first,
+        "UPPER_ROW": lambda first, second: second > first,
+    }
+    predicate = formats.get(edge_format)
+    if predicate is None:
+        raise ValueError(f"unsupported explicit edge-weight format: {edge_format}")
+    for first in range(dimension):
+        for second in range(dimension):
+            if predicate(first, second):
+                if index >= len(values):
+                    raise ValueError("explicit matrix has too few values")
+                matrix[first][second] = values[index]
+                matrix[second][first] = values[index]
+                index += 1
+    if index != len(values):
+        raise ValueError("explicit matrix has the wrong number of values")
+    return matrix
+
+
 class TravellingSalesman:
     """Symmetric TSP with position-to-city permutation and swap moves.
 
@@ -30,7 +101,11 @@ class TravellingSalesman:
 
     @classmethod
     def from_tsplib(cls, path: str | Path) -> TravellingSalesman:
-        """Parse a TSPLIB ``EUC_2D`` node-coordinate instance.
+        """Parse a TSPLIB TSP instance.
+
+        Supports coordinate instances with ``EUC_2D``, ``CEIL_2D``, ``ATT``, and
+        ``GEO`` edge weights, plus explicit symmetric matrices in the common
+        TSPLIB formats.
 
         Parameters
         ----------
@@ -45,43 +120,57 @@ class TravellingSalesman:
         Raises
         ------
         ValueError
-            When the file is missing coordinates or uses an unsupported edge type.
+            When the file is missing required data or uses an unsupported format.
         """
         lines = Path(path).read_text(encoding="utf-8").splitlines()
         dimension: int | None = None
         edge_type = "EUC_2D"
+        edge_format = ""
         coordinates: dict[int, tuple[float, float]] = {}
-        in_nodes = False
+        explicit: list[float] = []
+        section = ""
         for line in lines:
             stripped = line.strip()
-            if stripped.startswith("DIMENSION"):
+            if not stripped:
+                continue
+            upper = stripped.upper()
+            if upper.startswith("DIMENSION"):
                 dimension = int(stripped.split(":")[-1])
-            elif stripped.startswith("EDGE_WEIGHT_TYPE"):
-                edge_type = stripped.split(":")[-1].strip()
-            elif stripped == "NODE_COORD_SECTION":
-                in_nodes = True
-            elif stripped == "EOF":
+            elif upper.startswith("EDGE_WEIGHT_TYPE"):
+                edge_type = stripped.split(":")[-1].strip().upper()
+            elif upper.startswith("EDGE_WEIGHT_FORMAT"):
+                edge_format = stripped.split(":")[-1].strip().upper()
+            elif upper in {"NODE_COORD_SECTION", "EDGE_WEIGHT_SECTION"}:
+                section = upper
+            elif upper == "EOF":
                 break
-            elif in_nodes and stripped:
+            elif upper in {
+                "DISPLAY_DATA_SECTION",
+                "DEPOT_SECTION",
+                "DEMAND_SECTION",
+                "FIXED_EDGES_SECTION",
+            }:
+                section = ""
+            elif section == "NODE_COORD_SECTION":
                 parts = stripped.split()
                 if len(parts) >= 3:
                     coordinates[int(parts[0])] = (float(parts[1]), float(parts[2]))
-        if edge_type not in {"EUC_2D", "CEIL_2D"}:
-            raise ValueError(f"unsupported TSPLIB edge type: {edge_type}")
-        if dimension is None or len(coordinates) != dimension:
-            raise ValueError("TSPLIB instance is missing coordinates")
-        ordered = [coordinates[index] for index in range(1, dimension + 1)]
-        distances = [
-            [
-                float(
-                    math.ceil(math.hypot(x1 - x2, y1 - y2))
-                    if edge_type == "CEIL_2D"
-                    else round(math.hypot(x1 - x2, y1 - y2))
-                )
-                for x2, y2 in ordered
+            elif section == "EDGE_WEIGHT_SECTION":
+                explicit.extend(float(value) for value in stripped.split())
+        if dimension is None:
+            raise ValueError("TSPLIB instance is missing DIMENSION")
+        if edge_type in {"EUC_2D", "CEIL_2D", "ATT", "GEO"}:
+            if len(coordinates) != dimension:
+                raise ValueError("TSPLIB instance is missing coordinates")
+            ordered = [coordinates[index] for index in range(1, dimension + 1)]
+            distances = [
+                [_coordinate_distance(edge_type, first, second) for second in ordered]
+                for first in ordered
             ]
-            for x1, y1 in ordered
-        ]
+        elif edge_type == "EXPLICIT":
+            distances = _explicit_distances(explicit, dimension, edge_format)
+        else:
+            raise ValueError(f"unsupported TSPLIB edge type: {edge_type}")
         return cls(distances)
 
     @property

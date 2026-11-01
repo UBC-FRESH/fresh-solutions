@@ -1,3 +1,32 @@
+# Fresh Solutions v0.5.0
+
+Date: 2026-11-01
+
+Lin–Kernighan TSP release.
+
+## Changes
+
+- Added candidate-list Lin–Kernighan sequential edge exchange.
+- Added deterministic double-bridge kicks for iterated Lin–Kernighan.
+- Five-seed TSPLIB campaign from converged Or-opt tours:
+  - berlin52, kroA100, kroB100: 0.000% mean gap;
+  - ch150: 0.383% mean gap, 0.475% worst.
+- Kicks ablation:
+  - LK-only means 0.780–2.580%;
+  - ILK-5 means 0.000–0.558%;
+  - ILK-20 means 0.000–0.383%.
+- All 20 LK tours and all 60 ablation tours replay exactly.
+- Added public API docs and tests for the LK path.
+- Extended the TSPLIB parser to `EUC_2D`, `CEIL_2D`, `ATT`, `GEO`, and explicit symmetric matrix formats.
+- Version/citation updated to v0.5.0.
+
+## Known gaps
+
+- The LK comparison is quality-at-additional-cost, not equal-budget.
+- No independent TSP solver baseline and no TSPLIB-wide campaign.
+- No state-of-the-art claim.
+- No PyPI publication in this release.
+
 # Fresh Solutions v0.4.0
 
 Date: 2026-11-01
