@@ -12,7 +12,7 @@ exists and the maintainer approves it.
 | Phase | Parent issue | Branch | Status |
 | --- | --- | --- | --- |
 | P0 Bootstrap | #1 | `feature/p0-bootstrap` | complete |
-| P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | active |
+| P1 Problem-adapter contract | #2 | `feature/p1-adapter-contract` | complete |
 | P2 Engine extraction | TBD | `feature/p2-engine-extraction` | planned |
 | P3 CPU/GPU search scheduling | TBD | `feature/p3-search-scheduling` | planned |
 | P4 Benchmark adapters and evidence | TBD | `feature/p4-benchmarks` | planned |
@@ -57,12 +57,12 @@ Acceptance criteria:
 
 Parent issue: #2
 Branch: `feature/p1-adapter-contract`
-Status: active
+Status: complete
 
 Goal: define the boundary between a problem and the engine before extracting code.
 
-- [ ] P1.1 Write the adapter protocol: variables, domains, candidates, objective, feasibility, moves
-- [ ] P1.2 Define the evidence/replay contract
+- [x] P1.1 Write the adapter protocol: variables, domains, candidates, objective, feasibility, moves
+- [x] P1.2 Define the evidence/replay contract
 - [ ] P1.3 Record the first ADRs
 
 Acceptance criteria:

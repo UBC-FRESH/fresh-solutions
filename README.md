@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-Phase 0 (bootstrap) is planned. `ROADMAP.md` contains the plan; the GitHub issues carry live status.
+P1 (problem-adapter contract) is complete. P2 remains planned; `ROADMAP.md` contains the plan and the GitHub issues carry live status.
 
 ## Relationship to the papers project
 

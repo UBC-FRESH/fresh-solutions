@@ -1,11 +1,27 @@
-# Tool configuration for the UBC-FRESH dev workflow. This repository is a seed and
-# documentation kit, not a Python package, so there is no [project] table. Each gate
-# configured here is also a check in the green dashboard (scripts/dashboard.py).
+# Tool configuration for Fresh Solutions. Each gate configured here is also a check in the
+# green dashboard (scripts/dashboard.py).
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fresh-solutions"
+version = "0.1.0"
+description = "A hybrid metaheuristic engine for hard combinatorial optimisation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "UBC FRESH Lab" }]
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["fresh_solutions"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-src = ["scripts", "tests"]
+src = ["scripts", "tests", "fresh_solutions"]
 extend-exclude = ["tmp", "_build"]
 
 [tool.ruff.lint]
@@ -23,8 +39,8 @@ convention = "numpy"
 python_version = "3.11"
 strict = true
 warn_unreachable = true
-mypy_path = "scripts"
-files = ["scripts", "tests", "docs/conf.py"]
+mypy_path = "scripts:fresh_solutions"
+files = ["scripts", "tests", "fresh_solutions", "docs/conf.py"]
 
 [[tool.mypy.overrides]]
 module = ["numpydoc", "numpydoc.*"]
@@ -32,11 +48,11 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=scripts --cov-branch --cov-report=term-missing --cov-fail-under=95"
+addopts = "--cov=scripts --cov=fresh_solutions --cov-branch --cov-report=term-missing --cov-fail-under=95"
 
 [tool.coverage.run]
 branch = true
-source = ["scripts"]
+source = ["scripts", "fresh_solutions"]
 
 [tool.coverage.report]
 show_missing = true
