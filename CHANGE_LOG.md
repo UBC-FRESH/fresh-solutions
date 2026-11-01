@@ -122,3 +122,4 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Version/citation bumped to 0.5.0.
 - Release notes cover Lin–Kernighan, the five-seed campaign, and the kicks ablation.
 - Release candidate from main `24dc60c`; tag/release approved by maintainer.
+- Extended TSPLIB parsing to ATT, GEO, and explicit matrix formats for the broad benchmark panel.

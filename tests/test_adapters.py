@@ -91,7 +91,9 @@ def test_tsp_parser_and_errors(tmp_path: Path) -> None:
     bad.write_text("DIMENSION: 2\nNODE_COORD_SECTION\n1 0 0\nEOF\n", encoding="utf-8")
     with pytest.raises(ValueError, match="coordinates"):
         TravellingSalesman.from_tsplib(bad)
-    bad.write_text("EDGE_WEIGHT_TYPE: MAN_2D\nNODE_COORD_SECTION\nEOF\n", encoding="utf-8")
+    bad.write_text(
+        "DIMENSION: 2\nEDGE_WEIGHT_TYPE: MAN_2D\nNODE_COORD_SECTION\nEOF\n", encoding="utf-8"
+    )
     with pytest.raises(ValueError, match="unsupported"):
         TravellingSalesman.from_tsplib(bad)
 

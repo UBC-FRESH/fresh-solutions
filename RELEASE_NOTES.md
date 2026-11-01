@@ -17,6 +17,7 @@ Lin–Kernighan TSP release.
   - ILK-20 means 0.000–0.383%.
 - All 20 LK tours and all 60 ablation tours replay exactly.
 - Added public API docs and tests for the LK path.
+- Extended the TSPLIB parser to `EUC_2D`, `CEIL_2D`, `ATT`, `GEO`, and explicit symmetric matrix formats.
 - Version/citation updated to v0.5.0.
 
 ## Known gaps
