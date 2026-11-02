@@ -1,3 +1,30 @@
+# Fresh Solutions v0.8.0
+
+Date: 2026-11-02
+
+Accelerated QAP tabu.
+
+## Changes
+
+- Added Taillard O(n^2) delta-matrix updates for symmetric zero-diagonal QAP instances.
+- Added an optional Numba general scan for asymmetric instances, enabled by the
+  `fast` extra (`numpy`, `numba`).
+- Large-QAP multi-start reached patience on all 20 runs:
+  - esc128 best 0.000%;
+  - tai150b best 2.008%;
+  - tai256c best 0.350%;
+  - tho150 best 0.166%.
+- `tai256c` reached 10k-iteration patience in 468 s instead of stalling after a
+  handful of iterations.
+- Version/citation updated to v0.8.0.
+
+## Known gaps
+
+- The Numba path is optional and excluded from the default type/coverage gate.
+- No independent QAP solver baseline on the large tail.
+- Patience is a plateau rule, not a global-optimality proof.
+- No state-of-the-art claim.
+
 # Fresh Solutions v0.7.0
 
 Date: 2026-11-02
