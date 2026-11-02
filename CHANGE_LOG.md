@@ -154,3 +154,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Version/citation bumped to 0.7.0.
 - Release notes document the external backend and its license boundary.
 - Large-tail LKH evidence is in the papers repository.
+
+### P10.1 multi-start tabu support
+
+- Added optional `initial` assignment to `run_qap_tabu`.
+- Added validation and replay tests for explicit starts.
+- Enables multi-start / population-generated QAP portfolios.
