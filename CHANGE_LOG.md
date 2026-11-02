@@ -136,3 +136,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added `patience` to `QapTabuConfig`: stop after N iterations without a new best assignment.
 - Added plateau tests for both adapters.
 - Removed the 30-second benchmark-cap interpretation; capacity runs now use the plateau rule.
+
+### v0.6.0 convergence-stopping release
+
+- Version/citation bumped to 0.6.0.
+- Release notes cover patience stopping and cap-hit reporting.
+- Tag/release approved by maintainer.
