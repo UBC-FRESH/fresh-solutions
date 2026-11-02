@@ -160,3 +160,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added optional `initial` assignment to `run_qap_tabu`.
 - Added validation and replay tests for explicit starts.
 - Enables multi-start / population-generated QAP portfolios.
+
+### P10.1 QAP delta-matrix acceleration
+
+- Added Taillard O(n^2) delta-matrix update for symmetric zero-diagonal QAP instances.
+- Added optional Numba general scan for asymmetric instances; NumPy/Numba are optional `fast` extras.
+- `tai256c` reaches 10k-iteration patience in 468 s instead of a handful of iterations.
+- Added delta-consistency and accelerated/reference parity tests.

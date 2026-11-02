@@ -15,6 +15,9 @@ license = { file = "LICENSE" }
 authors = [{ name = "UBC FRESH Lab" }]
 dependencies = []
 
+[project.optional-dependencies]
+fast = ["numpy>=1.26", "numba>=0.60"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["fresh_solutions"]
 
@@ -56,4 +59,7 @@ source = ["scripts", "fresh_solutions"]
 
 [tool.coverage.report]
 show_missing = true
+omit = [
+    "fresh_solutions/adapters/qap_tabu_numba.py",
+]
 exclude_also = ['if __name__ == "__main__":']

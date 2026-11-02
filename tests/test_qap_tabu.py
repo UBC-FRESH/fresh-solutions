@@ -4,7 +4,14 @@ from __future__ import annotations
 
 import pytest
 from fresh_solutions.adapters import QuadraticAssignment
-from fresh_solutions.adapters.qap_tabu import QapTabuConfig, _swap_delta, run_qap_tabu
+from fresh_solutions.adapters.qap_tabu import (
+    QapTabuConfig,
+    _delta_matrix,
+    _run_accelerated,
+    _update_delta_matrix,
+    _swap_delta,
+    run_qap_tabu,
+)
 
 
 def _problem() -> QuadraticAssignment:
@@ -66,6 +73,49 @@ def test_qap_tabu_starts_from_an_optional_assignment() -> None:
     assert result.to_dict()["assignment"] == {
         str(key): value for key, value in sorted(result.assignment.items())
     }
+
+
+def test_qap_tabu_accelerated_matches_reference() -> None:
+    """The delta-matrix path agrees with the reference scan on a symmetric fixture."""
+    problem = QuadraticAssignment(
+        [[0, 1, 2], [1, 0, 3], [2, 3, 0]], [[0, 2, 4], [2, 0, 1], [4, 1, 0]]
+    )
+    reference = run_qap_tabu(
+        problem,
+        QapTabuConfig(iterations=50, seed=4, accelerated=False),
+    )
+    accelerated = run_qap_tabu(
+        problem,
+        QapTabuConfig(iterations=50, seed=4, accelerated=True),
+    )
+    assert accelerated.objective == pytest.approx(reference.objective)
+    assert accelerated.assignment == reference.assignment
+
+
+def test_qap_tabu_pure_delta_matrix_path() -> None:
+    """The pure delta-matrix path agrees with the reference and can time out."""
+    problem = QuadraticAssignment(
+        [[0, 1, 2], [1, 0, 3], [2, 3, 0]], [[0, 2, 4], [2, 0, 1], [4, 1, 0]]
+    )
+    reference = run_qap_tabu(problem, QapTabuConfig(iterations=50, seed=4, accelerated=False))
+    accelerated = _run_accelerated(problem, QapTabuConfig(iterations=50, seed=4), [0, 1, 2])
+    assert accelerated.objective == pytest.approx(reference.objective)
+    timed = _run_accelerated(problem, QapTabuConfig(iterations=50, max_seconds=1e-9), [0, 1, 2])
+    assert timed.stop_reason == "max_seconds"
+
+
+def test_qap_tabu_delta_matrix_update() -> None:
+    """The delta matrix remains consistent after a swap with unrelated pairs."""
+    problem = QuadraticAssignment(
+        [[0, 1, 2, 4], [1, 0, 3, 1], [2, 3, 0, 2], [4, 1, 2, 0]],
+        [[0, 2, 4, 1], [2, 0, 1, 3], [4, 1, 0, 2], [1, 3, 2, 0]],
+    )
+    assignment = [0, 1, 2, 3]
+    gains = _delta_matrix(problem, assignment)
+    _update_delta_matrix(problem, assignment, gains, 0, 1)
+    expected = _delta_matrix(problem, assignment)
+    assert assignment == [1, 0, 2, 3]
+    assert gains == expected
 
 
 def test_qap_tabu_patience_stops_the_plateau() -> None:
