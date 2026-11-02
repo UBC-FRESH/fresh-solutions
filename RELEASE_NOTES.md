@@ -1,3 +1,23 @@
+# Fresh Solutions v0.6.0
+
+Date: 2026-11-02
+
+Convergence-stopping release.
+
+## Changes
+
+- Added `patience` to iterated Lin–Kernighan: stop after N kicks without a new best tour.
+- Added `patience` to QAP robust tabu: stop after N iterations without a new best assignment.
+- Added plateau tests for both adapters.
+- Replaced short benchmark caps with explicit convergence records.
+- Version/citation updated to v0.6.0.
+
+## Known gaps
+
+- A 600-second safety cap remains for oversized instances; cap hits are reported as non-converged.
+- Large TSP instances still need a faster/stronger LK or LKH implementation.
+- No state-of-the-art claim.
+
 # Fresh Solutions v0.5.1
 
 Date: 2026-11-01
