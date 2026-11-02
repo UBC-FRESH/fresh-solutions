@@ -15,6 +15,9 @@ license = { file = "LICENSE" }
 authors = [{ name = "UBC FRESH Lab" }]
 dependencies = []
 
+[project.optional-dependencies]
+fast = ["numpy>=1.26", "numba>=0.60"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["fresh_solutions"]
 
@@ -46,6 +49,10 @@ files = ["scripts", "tests", "fresh_solutions", "docs/conf.py"]
 module = ["numpydoc", "numpydoc.*"]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = ["fresh_solutions.adapters.qap_tabu_numba"]
+ignore_errors = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=scripts --cov=fresh_solutions --cov-branch --cov-report=term-missing --cov-fail-under=95"
@@ -56,4 +63,7 @@ source = ["scripts", "fresh_solutions"]
 
 [tool.coverage.report]
 show_missing = true
+omit = [
+    "fresh_solutions/adapters/qap_tabu_numba.py",
+]
 exclude_also = ['if __name__ == "__main__":']
