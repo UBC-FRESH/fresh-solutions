@@ -40,6 +40,8 @@ def test_qap_tabu_config_validation_and_time_stop() -> None:
     """Invalid settings fail and a wall-clock budget stops the search."""
     with pytest.raises(ValueError, match="iterations"):
         QapTabuConfig(iterations=0)
+    with pytest.raises(ValueError, match="patience"):
+        QapTabuConfig(patience=0)
     with pytest.raises(ValueError, match="min_tenure"):
         QapTabuConfig(min_tenure=0)
     with pytest.raises(ValueError, match="max_tenure"):
@@ -50,3 +52,11 @@ def test_qap_tabu_config_validation_and_time_stop() -> None:
         QapTabuConfig(max_seconds=0.0)
     result = run_qap_tabu(_problem(), QapTabuConfig(iterations=100000, max_seconds=1e-9))
     assert result.stop_reason == "max_seconds"
+
+
+def test_qap_tabu_patience_stops_the_plateau() -> None:
+    """The QAP plateau rule stops after a declared number of stale iterations."""
+    problem = _problem()
+    result = run_qap_tabu(problem, QapTabuConfig(iterations=100000, patience=1, seed=2))
+    assert result.stop_reason == "patience"
+    assert result.iterations == 1

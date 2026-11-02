@@ -129,3 +129,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Fixed GEO latitude/longitude conversion in the TSPLIB parser.
 - Added ATT/GEO/EXPLICIT parser tests.
 - Broad-panel results must be rerun against v0.5.1; v0.5.0 GEO numbers are invalid.
+
+### P10.1 convergence stopping
+
+- Added `patience` to `TspLkConfig`: stop after N kicks without a new best tour.
+- Added `patience` to `QapTabuConfig`: stop after N iterations without a new best assignment.
+- Added plateau tests for both adapters.
+- Removed the 30-second benchmark-cap interpretation; capacity runs now use the plateau rule.

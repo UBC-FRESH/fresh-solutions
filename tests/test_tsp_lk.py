@@ -65,6 +65,18 @@ def test_lk_without_kicks_stops_after_the_initial_search() -> None:
     assert len(result.history) >= 2
 
 
+def test_lk_patience_stops_the_plateau() -> None:
+    """The plateau rule stops after a declared number of stale kicks."""
+    problem = _line_problem()
+    result = run_tsp_lk(
+        problem,
+        TspLkConfig(kicks=100, patience=2, seed=1),
+        _bad_initial(),
+    )
+    assert result.stop_reason == "patience"
+    assert result.kicks == 2
+
+
 def test_lk_wall_clock_stop() -> None:
     """A tiny wall-clock budget stops the search and is reported."""
     problem = _line_problem()
@@ -84,6 +96,8 @@ def test_lk_configuration_validation() -> None:
         TspLkConfig(max_depth=0)
     with pytest.raises(ValueError, match="kicks"):
         TspLkConfig(kicks=-1)
+    with pytest.raises(ValueError, match="patience"):
+        TspLkConfig(patience=0)
     with pytest.raises(ValueError, match="max_passes"):
         TspLkConfig(max_passes=0)
     with pytest.raises(ValueError, match="max_seconds"):
