@@ -44,11 +44,14 @@ strict = true
 warn_unreachable = true
 mypy_path = "scripts:fresh_solutions"
 files = ["scripts", "tests", "fresh_solutions", "docs/conf.py"]
-exclude = "(^|/)fresh_solutions/adapters/qap_tabu_numba\\.py$"
 
 [[tool.mypy.overrides]]
 module = ["numpydoc", "numpydoc.*"]
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["fresh_solutions.adapters.qap_tabu_numba"]
+ignore_errors = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
