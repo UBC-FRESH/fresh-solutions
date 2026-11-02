@@ -44,7 +44,7 @@ strict = true
 warn_unreachable = true
 mypy_path = "scripts:fresh_solutions"
 files = ["scripts", "tests", "fresh_solutions", "docs/conf.py"]
-exclude = ["fresh_solutions/adapters/qap_tabu_numba.py"]
+exclude = "(^|/)fresh_solutions/adapters/qap_tabu_numba\\.py$"
 
 [[tool.mypy.overrides]]
 module = ["numpydoc", "numpydoc.*"]
