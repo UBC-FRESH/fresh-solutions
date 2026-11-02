@@ -28,7 +28,10 @@ class TspLkConfig:
     max_depth : int, optional
         Maximum sequential exchange depth before the search must close the tour. Defaults to 4.
     kicks : int, optional
-        Number of double-bridge perturbations. Defaults to 20.
+        Maximum number of double-bridge perturbations. Defaults to 20.
+    patience : int or None, optional
+        Stop after this many kicks without a new best tour. ``None`` disables
+        the plateau rule and runs the full ``kicks`` budget.
     seed : int, optional
         Random seed for the perturbations. Defaults to 1.
     max_passes : int, optional
@@ -40,6 +43,7 @@ class TspLkConfig:
     candidate_count: int = 16
     max_depth: int = 4
     kicks: int = 20
+    patience: int | None = None
     seed: int = 1
     max_passes: int = 100
     max_seconds: float | None = None
@@ -52,6 +56,8 @@ class TspLkConfig:
             raise ValueError("max_depth must be positive")
         if self.kicks < 0:
             raise ValueError("kicks must not be negative")
+        if self.patience is not None and self.patience < 1:
+            raise ValueError("patience must be positive")
         if self.max_passes < 1:
             raise ValueError("max_passes must be positive")
         if self.max_seconds is not None and self.max_seconds <= 0.0:
@@ -345,6 +351,7 @@ def run_tsp_lk(
     history.append(current)
 
     kicks = 0
+    stale_kicks = 0
     while kicks < config.kicks and stop_reason != "max_seconds":
         if deadline is not None and time.monotonic() >= deadline:
             stop_reason = "max_seconds"
@@ -373,6 +380,14 @@ def run_tsp_lk(
                 best = tour[:]
                 best_objective = current
                 history.append(best_objective)
+                stale_kicks = 0
+            else:
+                stale_kicks += 1
+        else:
+            stale_kicks += 1
+        if config.patience is not None and stale_kicks >= config.patience:
+            stop_reason = "patience"
+            break
 
     return TspLkResult(
         assignment=dict(enumerate(best)),

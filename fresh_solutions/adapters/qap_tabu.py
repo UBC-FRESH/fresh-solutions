@@ -17,6 +17,9 @@ class QapTabuConfig:
     ----------
     iterations : int, optional
         Maximum tabu iterations. Defaults to 20,000.
+    patience : int or None, optional
+        Stop after this many iterations without a new best objective. ``None``
+        disables the plateau rule and runs the full iteration budget.
     seed : int, optional
         Random seed for tabu tenures. Defaults to 1.
     min_tenure : int or None, optional
@@ -28,6 +31,7 @@ class QapTabuConfig:
     """
 
     iterations: int = 20000
+    patience: int | None = None
     seed: int = 1
     min_tenure: int | None = None
     max_tenure: int | None = None
@@ -37,6 +41,8 @@ class QapTabuConfig:
         """Validate the configuration."""
         if self.iterations < 1:
             raise ValueError("iterations must be positive")
+        if self.patience is not None and self.patience < 1:
+            raise ValueError("patience must be positive")
         if self.min_tenure is not None and self.min_tenure < 1:
             raise ValueError("min_tenure must be positive")
         if self.max_tenure is not None and self.max_tenure < 1:
@@ -146,6 +152,7 @@ def run_qap_tabu(problem: QuadraticAssignment, config: QapTabuConfig) -> QapTabu
     stop_reason = "max_iterations"
     started = time.monotonic()
     iterations = 0
+    last_improvement = 0
     for iteration in range(1, config.iterations + 1):
         if config.max_seconds is not None and time.monotonic() - started >= config.max_seconds:
             stop_reason = "max_seconds"
@@ -176,6 +183,10 @@ def run_qap_tabu(problem: QuadraticAssignment, config: QapTabuConfig) -> QapTabu
             best_objective = current
             best = assignment[:]
             history.append(best_objective)
+            last_improvement = iteration
+        if config.patience is not None and iteration - last_improvement >= config.patience:
+            stop_reason = "patience"
+            break
     return QapTabuResult(
         assignment=dict(enumerate(best)),
         objective=best_objective,
