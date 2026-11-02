@@ -15,4 +15,5 @@ whenever you add a module to the project.
    engine
    search
    benchmarks
+   lkh
    tsp-lk

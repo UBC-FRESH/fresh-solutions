@@ -142,3 +142,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Version/citation bumped to 0.6.0.
 - Release notes cover patience stopping and cap-hit reporting.
 - Tag/release approved by maintainer.
+
+### P10.1 optional LKH backend
+
+- Added `fresh_solutions.adapters.lkh` as an optional wrapper around a user-supplied LKH binary.
+- LKH is not bundled; the research-use binary remains external.
+- Added fake-backend tests for invocation, parsing, failure, and replay.

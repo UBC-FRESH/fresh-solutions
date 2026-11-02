@@ -1,12 +1,15 @@
 """Fresh Solutions: a hybrid metaheuristic engine for hard combinatorial optimisation."""
 
 from .adapters import (
+    LkhConfig,
+    LkhResult,
     QapTabuConfig,
     QapTabuResult,
     QuadraticAssignment,
     TravellingSalesman,
     TspLkConfig,
     TspLkResult,
+    run_lkh,
     run_qap_tabu,
     run_tsp_lk,
 )
@@ -34,6 +37,8 @@ __all__ = [
     "EvidenceRecord",
     "GraphColouring",
     "HybridResult",
+    "LkhConfig",
+    "LkhResult",
     "PopulationConfig",
     "PopulationResult",
     "ProblemAdapter",
@@ -49,6 +54,7 @@ __all__ = [
     "TspLkConfig",
     "TspLkResult",
     "run_hybrid_search",
+    "run_lkh",
     "run_local_search",
     "run_population_search",
     "run_qap_tabu",
