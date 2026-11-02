@@ -167,3 +167,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added optional Numba general scan for asymmetric instances; NumPy/Numba are optional `fast` extras.
 - `tai256c` reaches 10k-iteration patience in 468 s instead of a handful of iterations.
 - Added delta-consistency and accelerated/reference parity tests.
+
+### v0.8.0 accelerated QAP release
+
+- Version/citation bumped to 0.8.0.
+- Release notes cover delta-matrix and optional Numba acceleration.
+- Large-QAP patience evidence is in the papers repository.
