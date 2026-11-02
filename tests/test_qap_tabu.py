@@ -8,8 +8,8 @@ from fresh_solutions.adapters.qap_tabu import (
     QapTabuConfig,
     _delta_matrix,
     _run_accelerated,
-    _update_delta_matrix,
     _swap_delta,
+    _update_delta_matrix,
     run_qap_tabu,
 )
 
