@@ -52,6 +52,20 @@ def test_qap_tabu_config_validation_and_time_stop() -> None:
         QapTabuConfig(max_seconds=0.0)
     result = run_qap_tabu(_problem(), QapTabuConfig(iterations=100000, max_seconds=1e-9))
     assert result.stop_reason == "max_seconds"
+    with pytest.raises(ValueError, match="permutation"):
+        run_qap_tabu(_problem(), QapTabuConfig(iterations=10), {0: 0, 1: 0, 2: 2})
+
+
+def test_qap_tabu_starts_from_an_optional_assignment() -> None:
+    """An explicit start is honored and still replays exactly."""
+    problem = _problem()
+    initial = {0: 2, 1: 0, 2: 1}
+    result = run_qap_tabu(problem, QapTabuConfig(iterations=10, seed=1), initial)
+    assert problem.evaluate(initial).objective >= 0.0
+    assert problem.evaluate(result.assignment).objective == pytest.approx(result.objective)
+    assert result.to_dict()["assignment"] == {
+        str(key): value for key, value in sorted(result.assignment.items())
+    }
 
 
 def test_qap_tabu_patience_stops_the_plateau() -> None:

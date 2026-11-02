@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import random
 import time
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 
 from .qap import QuadraticAssignment
@@ -124,7 +125,11 @@ def _swap_delta(
     return delta
 
 
-def run_qap_tabu(problem: QuadraticAssignment, config: QapTabuConfig) -> QapTabuResult:
+def run_qap_tabu(
+    problem: QuadraticAssignment,
+    config: QapTabuConfig,
+    initial: Mapping[int, int] | None = None,
+) -> QapTabuResult:
     """Run robust tabu search over QAP facility swaps.
 
     Parameters
@@ -133,6 +138,8 @@ def run_qap_tabu(problem: QuadraticAssignment, config: QapTabuConfig) -> QapTabu
         QAP instance.
     config : QapTabuConfig
         Search settings.
+    initial : mapping of int to int or None, optional
+        Starting assignment. Defaults to the adapter's identity assignment.
 
     Returns
     -------
@@ -141,8 +148,9 @@ def run_qap_tabu(problem: QuadraticAssignment, config: QapTabuConfig) -> QapTabu
     """
     rng = random.Random(config.seed)
     size = problem.variable_count
-    assignment = list(problem.initial_assignment().values())
-    evaluation = problem.evaluate(dict(enumerate(assignment)))
+    starting = initial if initial is not None else problem.initial_assignment()
+    evaluation = problem.evaluate(starting)
+    assignment = [starting[index] for index in range(size)]
     current = evaluation.objective
     best_objective = current
     best = assignment[:]
