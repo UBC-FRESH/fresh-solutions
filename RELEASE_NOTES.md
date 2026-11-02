@@ -1,3 +1,26 @@
+# Fresh Solutions v0.7.0
+
+Date: 2026-11-02
+
+Optional external LKH backend.
+
+## Changes
+
+- Added `fresh_solutions.adapters.lkh` and `run_lkh`.
+- The backend invokes a user-supplied LKH binary; LKH is not bundled because it is
+  research-use software.
+- Added TSPLIB explicit-matrix export, tour parsing, subprocess failure handling,
+  and fake-backend tests.
+- Large TSPLIB tail: 100 LKH runs over 20 instances with `300<n<=1000`; 71 optimum
+  runs, mean gap 0.092%, median 0%, worst 1.930%, mean wall 4.88 s.
+- Version/citation updated to v0.7.0.
+
+## Known gaps
+
+- LKH is optional and external; no bundled binary.
+- The internal iterated LK remains weaker on large instances.
+- No state-of-the-art claim for Fresh Solutions' own heuristic.
+
 # Fresh Solutions v0.6.0
 
 Date: 2026-11-02

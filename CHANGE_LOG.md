@@ -148,3 +148,9 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added `fresh_solutions.adapters.lkh` as an optional wrapper around a user-supplied LKH binary.
 - LKH is not bundled; the research-use binary remains external.
 - Added fake-backend tests for invocation, parsing, failure, and replay.
+
+### v0.7.0 optional LKH release
+
+- Version/citation bumped to 0.7.0.
+- Release notes document the external backend and its license boundary.
+- Large-tail LKH evidence is in the papers repository.
