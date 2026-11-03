@@ -173,3 +173,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Version/citation bumped to 0.8.0.
 - Release notes cover delta-matrix and optional Numba acceleration.
 - Large-QAP patience evidence is in the papers repository.
+
+### P11.1 post-P10 documentation reconciliation
+
+- Marked P10 complete and opened P11 post-P10 maintenance.
+- Updated README to v0.8.0 and the progression guide for ILK/LKH.
+- Added QAP tabu API documentation.
+- Disclosed the post-P10 release deviation without retroactive approval claims.

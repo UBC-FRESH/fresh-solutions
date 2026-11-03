@@ -15,5 +15,6 @@ whenever you add a module to the project.
    engine
    search
    benchmarks
+   qap-tabu
    lkh
    tsp-lk
