@@ -195,6 +195,6 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Added `fresh_solutions.kernel.telemetry` (`RunLogger`, `read_records`), extracted from WS4;
   WS4 now re-exports it. Added the generic `Runner` protocol for portfolio/tuning
   orchestration. Delta-SA now keeps a best-move journal instead of copying the whole mapping
-  on every incumbent improvement. Version 0.9.2. The GitHub release carries the wheel and sdist;
-  PyPI publication is pending a trusted-publisher configuration (the OIDC exchange returned
-  `invalid-publisher`). The phase stays planned until its parent issue exists.
+  on every incumbent improvement. Version 0.9.3 adds the tag-triggered PyPI trusted-publishing
+  workflow; the pending publisher is configured for `publish.yml` in the `pypi` environment.
+  The phase stays planned until its parent issue exists.
