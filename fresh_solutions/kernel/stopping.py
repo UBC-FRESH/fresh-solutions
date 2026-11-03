@@ -25,19 +25,18 @@ def parse_time_limit(text: str) -> float | None:
     ValueError
         When the text is not ``HH:MM:SS``, or states zero or less.
     """
-    if not text:
+    if not text.strip():
         return None
-    parts = text.split(":")
-    if len(parts) != 3:
-        raise ValueError("time limit must be HH:MM:SS")
-    try:
-        hours, minutes, seconds = (int(part) for part in parts)
-    except ValueError as exc:
-        raise ValueError("time limit must be HH:MM:SS") from exc
-    total = hours * 3600 + minutes * 60 + seconds
-    if total <= 0:
-        raise ValueError("time limit must be positive")
-    return float(total)
+    parts = text.strip().split(":")
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
+        raise ValueError(f"a time limit is HH:MM:SS, and {text!r} is not")
+    hours, minutes, seconds = (int(part) for part in parts)
+    if minutes > 59 or seconds > 59:
+        raise ValueError(f"a time limit is HH:MM:SS, and {text!r} has no such minutes or seconds")
+    total = float(hours * 3600 + minutes * 60 + seconds)
+    if total <= 0.0:
+        raise ValueError(f"a time limit of {text!r} would stop a run before it started")
+    return total
 
 
 def expired(deadline: float | None) -> bool:

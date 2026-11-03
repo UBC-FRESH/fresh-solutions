@@ -1,4 +1,10 @@
-# Fresh Solutions v0.8.0
+# Fresh Solutions v0.9.0
+
+## Shared search kernel
+
+- Added `fresh_solutions.kernel` with a generic `Problem[State, Context]` boundary, a weighted operator registry, in-place undo records, SA, delta-SA, tabu, ILS, threshold, geometric and adaptive cooling, run control, and time/patience/reversion stopping.
+- Ported the WS4 generic solver tests to a WS4-free toy state.
+- WS4 consumes the kernel through compatibility facades; FHOPS is the second adapter.
 
 Date: 2026-11-02
 

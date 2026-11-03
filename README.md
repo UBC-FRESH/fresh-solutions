@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-v0.8.0 is the current release. It includes iterated Lin–Kernighan, QAP delta-matrix tabu, patience stopping, and an optional external LKH backend. The current evidence and limits are recorded in the papers project.
+v0.9.0 is the current development line. It adds the generic search kernel (state/operator registry, SA, delta-SA, tabu, ILS, threshold, cooling, control, and stopping rules) extracted from WS4, on top of the v0.8.0 iterated Lin–Kernighan, QAP delta-matrix tabu, patience stopping, and optional external LKH backend. The current evidence and limits are recorded in the papers project.
 
 ## Relationship to the papers project
 

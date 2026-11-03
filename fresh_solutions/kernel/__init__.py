@@ -6,7 +6,7 @@ supply the state representation, objective, move context, and operators.
 
 from .control import RunControl
 from .cooling import AdaptiveCooling, TemperatureSchedule
-from .operators import Operator, OperatorRegistry, Undo, restore
+from .operators import Operator, OperatorRegistry, Undo, restore, restore_state
 from .problem import Problem, clone_state, state_signature
 from .solvers import (
     DeltaEvaluator,
@@ -44,6 +44,7 @@ __all__ = [
     "parse_time_limit",
     "patience_reached",
     "restore",
+    "restore_state",
     "reversion_due",
     "solve_ils",
     "solve_sa",
