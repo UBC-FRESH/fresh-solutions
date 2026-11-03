@@ -192,4 +192,5 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Ported the WS4 generic solver tests into a WS4-free toy state; 235 tests pass at 95.5% branch
   coverage.
 - Bumped the package to 0.9.0. The WS4 adapter now consumes the kernel through compatibility facades.
-- P12.1 is implemented locally; the phase stays planned until its parent issue exists.
+- Added `fresh_solutions.kernel.telemetry` (`RunLogger`, `read_records`), extracted from WS4;
+  WS4 now re-exports it. The phase stays planned until its parent issue exists.

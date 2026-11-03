@@ -26,6 +26,7 @@ from .stopping import (
     reversion_due,
     stopped,
 )
+from .telemetry import RunLogger, read_records
 
 __all__ = [
     "AdaptiveCooling",
@@ -34,6 +35,7 @@ __all__ = [
     "OperatorRegistry",
     "Problem",
     "RunControl",
+    "RunLogger",
     "SnapshotCallback",
     "StepCallback",
     "TemperatureSchedule",
@@ -43,6 +45,7 @@ __all__ = [
     "expired",
     "parse_time_limit",
     "patience_reached",
+    "read_records",
     "restore",
     "restore_state",
     "reversion_due",
