@@ -1,4 +1,4 @@
-# Fresh Solutions v0.9.1
+# Fresh Solutions v0.9.2
 
 ## Shared search kernel
 
@@ -7,6 +7,7 @@
 - Added the generic JSONL run telemetry (`RunLogger`, `read_records`) and the `Runner`
   protocol for portfolio/tuning orchestration.
 - Delta-SA keeps a best-move journal instead of copying the whole mapping on every improvement.
+- Added the tag-triggered PyPI trusted-publishing workflow.
 - WS4 consumes the kernel through compatibility facades; FHOPS is the second adapter.
 
 Date: 2026-11-02
