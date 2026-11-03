@@ -8,6 +8,7 @@ from .control import RunControl
 from .cooling import AdaptiveCooling, TemperatureSchedule
 from .operators import Operator, OperatorRegistry, Undo, restore, restore_state
 from .problem import Problem, clone_state, state_signature
+from .runner import Runner
 from .solvers import (
     DeltaEvaluator,
     SnapshotCallback,
@@ -36,6 +37,7 @@ __all__ = [
     "Problem",
     "RunControl",
     "RunLogger",
+    "Runner",
     "SnapshotCallback",
     "StepCallback",
     "TemperatureSchedule",
