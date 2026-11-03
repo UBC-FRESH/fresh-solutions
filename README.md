@@ -14,7 +14,7 @@ Fresh Solutions extracts the search architecture developed in WS4:
 
 ## Status
 
-P6 maintenance is complete: the TSP adapter uses 2-opt segment reversal and the public benchmark evidence is refreshed. v0.2.0 is the current release.
+v0.8.0 is the current release. It includes iterated Lin–Kernighan, QAP delta-matrix tabu, patience stopping, and an optional external LKH backend. The current evidence and limits are recorded in the papers project.
 
 ## Relationship to the papers project
 

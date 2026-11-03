@@ -111,5 +111,4 @@ The framework supplies the adapter boundary, exact resident state, batch/populat
 handoff, checkpoint replay, convergence records, and benchmark evidence. It does not supply a
 domain-specific neighbourhood; that is the adapter author's contribution.
 
-TSP remains Or-opt-only. Randomized 3-opt was negative and is not the default; Lin–Kernighan is not
-implemented. No global-optimality or universal-dominance claim is made.
+TSP now has iterated Lin–Kernighan; randomized 3-opt remains a negative result. Large TSP uses an optional external LKH backend at the stated budget, not as part of the Apache-licensed package. No global-optimality or universal-dominance claim is made.

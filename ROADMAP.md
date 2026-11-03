@@ -21,7 +21,8 @@ exists and the maintainer approves it.
 | P7 Convergence protocol | #17 | `feature/p7-convergence` | complete |
 | P8 Competitive neighborhoods | #19 | `feature/p8-competitive` | complete |
 | P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | complete |
-| P10 TSP Lin–Kernighan | #28 | `feature/p10-tsp-lk` | pr-open |
+| P10 TSP Lin–Kernighan | #28 | `feature/p10-tsp-lk` | complete |
+| P11 Post-P10 maintenance | #40 | `feature/p11-maintenance` | pr-open |
 
 ## Lifecycle Map
 
@@ -212,7 +213,7 @@ Acceptance criteria:
 
 Parent issue: #28
 Branch: `feature/p10-tsp-lk`
-Status: pr-open
+Status: complete
 
 Goal: implement a real Lin–Kernighan TSP neighborhood and evaluate it against the converged Or-opt tours.
 
@@ -224,3 +225,19 @@ Acceptance criteria:
 - The iterated LK result improves materially over Or-opt on the TSPLIB set.
 - Every reported tour replays exactly.
 - The dashboard stays green.
+
+## Phase 11: Post-P10 maintenance
+
+Parent issue: #40
+Branch: `feature/p11-maintenance`
+Status: pr-open
+
+Goal: reconcile documentation and release history after P10 without rewriting history.
+
+- [x] P11.1 Reconcile post-P10 docs and release record (#41)
+
+Acceptance criteria:
+
+- Roadmap and GitHub state agree.
+- README names the current release.
+- Post-P10 release drift is disclosed.
