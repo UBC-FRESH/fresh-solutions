@@ -7,7 +7,7 @@
 - Added the generic JSONL run telemetry (`RunLogger`, `read_records`) and the `Runner`
   protocol for portfolio/tuning orchestration.
 - Delta-SA keeps a best-move journal instead of copying the whole mapping on every improvement.
-- Added the tag-triggered PyPI trusted-publishing workflow.
+- GitHub release artifacts are published for v0.9.2; PyPI publication is pending a trusted-publisher configuration.
 - WS4 consumes the kernel through compatibility facades; FHOPS is the second adapter.
 
 Date: 2026-11-02
