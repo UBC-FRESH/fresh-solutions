@@ -5,10 +5,6 @@ Benchmark adapters and records
    :members:
    :undoc-members:
 
-.. automodule:: fresh_solutions.adapters.qap_tabu
-   :members:
-   :undoc-members:
-
 .. automodule:: fresh_solutions.adapters.tsp
    :members:
    :undoc-members:
