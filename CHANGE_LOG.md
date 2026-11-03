@@ -194,4 +194,6 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Bumped the package to 0.9.0. The WS4 adapter now consumes the kernel through compatibility facades.
 - Added `fresh_solutions.kernel.telemetry` (`RunLogger`, `read_records`), extracted from WS4;
   WS4 now re-exports it. Added the generic `Runner` protocol for portfolio/tuning
-  orchestration. The phase stays planned until its parent issue exists.
+  orchestration. Delta-SA now keeps a best-move journal instead of copying the whole mapping
+  on every incumbent improvement. Version 0.9.1. The phase stays planned until its parent issue
+  exists.

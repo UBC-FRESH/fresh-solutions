@@ -1,4 +1,4 @@
-# Fresh Solutions v0.9.0
+# Fresh Solutions v0.9.1
 
 ## Shared search kernel
 
@@ -6,6 +6,7 @@
 - Ported the WS4 generic solver tests to a WS4-free toy state.
 - Added the generic JSONL run telemetry (`RunLogger`, `read_records`) and the `Runner`
   protocol for portfolio/tuning orchestration.
+- Delta-SA keeps a best-move journal instead of copying the whole mapping on every improvement.
 - WS4 consumes the kernel through compatibility facades; FHOPS is the second adapter.
 
 Date: 2026-11-02

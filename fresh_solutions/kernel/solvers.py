@@ -12,8 +12,8 @@ import copy
 import math
 import random
 from collections import deque
-from collections.abc import Callable, Mapping, Sequence
-from typing import Any, Protocol, TypeVar
+from collections.abc import Callable, Mapping, MutableMapping, Sequence
+from typing import Any, Protocol, TypeVar, cast
 
 from .control import RunControl
 from .cooling import TemperatureSchedule
@@ -298,6 +298,11 @@ def solve_sa_delta(
     evaluator.reset(current)
     current_obj = evaluator.objective
     best, best_obj = copy.deepcopy(current), current_obj
+    # Replaying accepted moves is cheaper than copying a large mapping whenever the
+    # incumbent improves. The delta path is mapping-based, so the cast is sound.
+    best_journal: list[tuple[object, object | None]] = []
+    current_map = cast(MutableMapping[object, object], current)
+    best_map = cast(MutableMapping[object, object], best)
     schedule = TemperatureSchedule(
         initial=temperature,
         cooling=cooling,
@@ -324,14 +329,24 @@ def solve_sa_delta(
                 evaluator.apply(changed, current)
                 current_obj = move_obj
                 accepted += 1
+                for key in changed:
+                    best_journal.append((key, current_map.get(key)))
                 if move_obj < best_obj:
-                    best, best_obj = copy.deepcopy(current), move_obj
+                    for journal_key, journal_value in best_journal:
+                        if journal_value is None:
+                            best_map.pop(journal_key, None)
+                        else:
+                            best_map[journal_key] = journal_value
+                    best_journal.clear()
+                    best_obj = move_obj
                     last_improvement = iteration
                 if reversion_due(accepted, reversion):
                     current = copy.deepcopy(best)
+                    current_map = cast(MutableMapping[object, object], current)
                     evaluator.reset(current)
                     current_obj = best_obj
                     accepted = 0
+                    best_journal.clear()
             else:
                 restore_state(current, undo)
                 evaluator.revert()
