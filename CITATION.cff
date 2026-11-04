@@ -4,7 +4,7 @@ title: "Fresh Solutions"
 abstract: "A hybrid metaheuristic engine for hard combinatorial optimisation."
 authors:
   - name: "UBC FRESH Lab"
-version: 0.8.0
+version: 0.9.3
 date-released: 2026-11-01
 license: Apache-2.0
 repository-code: "https://github.com/UBC-FRESH/fresh-solutions"

@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fresh-solutions"
-version = "0.8.0"
+version = "0.9.3"
 description = "A hybrid metaheuristic engine for hard combinatorial optimisation"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -20,6 +20,9 @@ fast = ["numpy>=1.26", "numba>=0.60"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["fresh_solutions"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"fresh_solutions/py.typed" = "fresh_solutions/py.typed"
 
 [tool.ruff]
 line-length = 100

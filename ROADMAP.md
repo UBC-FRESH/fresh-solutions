@@ -23,6 +23,7 @@ exists and the maintainer approves it.
 | P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | complete |
 | P10 TSP Lin–Kernighan | #28 | `feature/p10-tsp-lk` | complete |
 | P11 Post-P10 maintenance | #40 | `feature/p11-maintenance` | pr-open |
+| P12 Shared search kernel | TBD | `feature/p12-shared-kernel` | planned |
 
 ## Lifecycle Map
 
@@ -241,3 +242,23 @@ Acceptance criteria:
 - Roadmap and GitHub state agree.
 - README names the current release.
 - Post-P10 release drift is disclosed.
+
+
+## Phase 12: Shared search kernel
+
+Parent issue: TBD
+Branch: `feature/p12-shared-kernel`
+Status: planned
+
+Goal: extract the problem-agnostic operator, solver, cooling, control, and stopping kernel from
+WS4 so WS4, FHOPS, and the public benchmark adapters share one implementation.
+
+- [ ] P12.1 Extract the generic operator and solver kernel from WS4
+
+Acceptance criteria:
+
+- The kernel is generic over an adapter-owned state and move context.
+- SA, delta-SA, tabu, ILS, and threshold match the WS4 implementation on the same seeds.
+- WS4 imports the kernel through compatibility facades and its full suite stays green.
+- FHOPS supplies the second adapter with a different state representation.
+- The dashboard stays green.

@@ -180,3 +180,21 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
 - Updated README to v0.8.0 and the progression guide for ILK/LKH.
 - Added QAP tabu API documentation.
 - Disclosed the post-P10 release deviation without retroactive approval claims.
+
+
+## 2026-11-03
+
+### P12.1 shared search kernel
+
+- Added `fresh_solutions.kernel`: generic `Problem[State, Context]`, operator protocol and weighted
+  registry, in-place undo/restore, SA, delta-SA, tabu, ILS, threshold, geometric and adaptive cooling,
+  run control, time/patience/reversion stopping, and exact state clone/signature hooks.
+- Ported the WS4 generic solver tests into a WS4-free toy state; 235 tests pass at 95.5% branch
+  coverage.
+- Bumped the package to 0.9.0. The WS4 adapter now consumes the kernel through compatibility facades.
+- Added `fresh_solutions.kernel.telemetry` (`RunLogger`, `read_records`), extracted from WS4;
+  WS4 now re-exports it. Added the generic `Runner` protocol for portfolio/tuning
+  orchestration. Delta-SA now keeps a best-move journal instead of copying the whole mapping
+  on every incumbent improvement. Version 0.9.3 adds the tag-triggered PyPI trusted-publishing
+  workflow; the pending publisher is configured for `publish.yml` in the `pypi` environment.
+  The phase stays planned until its parent issue exists.
