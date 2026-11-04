@@ -23,7 +23,7 @@ exists and the maintainer approves it.
 | P9 Evidence maintenance | #25 | `feature/p9-evidence-maintenance` | complete |
 | P10 TSP Lin–Kernighan | #28 | `feature/p10-tsp-lk` | complete |
 | P11 Post-P10 maintenance | #40 | `feature/p11-maintenance` | pr-open |
-| P12 Shared search kernel | TBD | `feature/p12-shared-kernel` | planned |
+| P12 Shared search kernel | #44 | `feature/p12-shared-kernel` | complete |
 
 ## Lifecycle Map
 
@@ -246,14 +246,18 @@ Acceptance criteria:
 
 ## Phase 12: Shared search kernel
 
-Parent issue: TBD
+Parent issue: #44
 Branch: `feature/p12-shared-kernel`
-Status: planned
+Status: complete
 
 Goal: extract the problem-agnostic operator, solver, cooling, control, and stopping kernel from
 WS4 so WS4, FHOPS, and the public benchmark adapters share one implementation.
 
-- [ ] P12.1 Extract the generic operator and solver kernel from WS4
+- [x] P12.1 Extract the generic operator and solver kernel from WS4
+- [x] P12.2 Add the shared telemetry logger and `Runner` protocol
+- [x] P12.3 Keep a best-move journal in delta SA
+- [x] P12.4 Publish 0.9.3 with trusted publishing
+- [x] P12.5 Close out the cross-repo retrofit
 
 Acceptance criteria:
 

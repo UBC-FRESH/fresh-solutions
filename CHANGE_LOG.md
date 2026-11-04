@@ -198,3 +198,8 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
   on every incumbent improvement. Version 0.9.3 adds the tag-triggered PyPI trusted-publishing
   workflow; the pending publisher is configured for `publish.yml` in the `pypi` environment.
   The phase stays planned until its parent issue exists.
+
+- 2026-11-04: closed out the cross-repo kernel retrofit. Added
+  `notes/reports/shared-kernel-retrofit-closeout.md`, marked P12 complete, and recorded the
+  0.9.3 release, WS4/FHOPS adoption, papers pin, and the decision to keep the existing FHOPS
+  solvers. No code changes.
