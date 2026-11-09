@@ -16,6 +16,13 @@ def _nint(value: float) -> float:
     return float(int(value + 0.5))
 
 
+def _geo_radians(value: float) -> float:
+    """Convert a TSPLIB GEO coordinate from degrees/minutes to radians."""
+    degrees = int(value)
+    minutes = value - degrees
+    return 3.141592 * (degrees + 5.0 * minutes / 3.0) / 180.0
+
+
 def _coordinate_distance(
     edge_type: str,
     first: tuple[float, float],
@@ -32,16 +39,16 @@ def _coordinate_distance(
         candidate = _nint(math.sqrt((dx * dx + dy * dy) / 10.0))
         return candidate + 1.0 if candidate < math.sqrt((dx * dx + dy * dy) / 10.0) else candidate
     if edge_type == "GEO":
-        pi = 3.141592
         radius = 6378.388
-        latitude_first = pi * (first[0] + 5.0 * (first[0] - int(first[0])) / 3.0) / 180.0
-        latitude_second = pi * (second[0] + 5.0 * (second[0] - int(second[0])) / 3.0) / 180.0
-        longitude_first = pi * (first[1] + 5.0 * (first[1] - int(first[1])) / 3.0) / 180.0
-        longitude_second = pi * (second[1] + 5.0 * (second[1] - int(second[1])) / 3.0) / 180.0
+        latitude_first = _geo_radians(first[0])
+        latitude_second = _geo_radians(second[0])
+        longitude_first = _geo_radians(first[1])
+        longitude_second = _geo_radians(second[1])
         q1 = math.cos(longitude_first - longitude_second)
         q2 = math.cos(latitude_first - latitude_second)
         q3 = math.cos(latitude_first + latitude_second)
-        return float(int(radius * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0))
+        raw = radius * math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0
+        return float(int(raw))
     raise ValueError(f"unsupported coordinate edge type: {edge_type}")
 
 
