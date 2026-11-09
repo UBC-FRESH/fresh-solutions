@@ -43,6 +43,18 @@ def test_geo_coordinate_format(tmp_path: Path) -> None:
     assert problem.distances[0][1] == problem.distances[1][0]
 
 
+def test_geo_known_distance_regression(tmp_path: Path) -> None:
+    """GEO uses the integer degree as the base and the TSPLIB floor convention."""
+    path = _write(
+        tmp_path,
+        "geo-known.tsp",
+        "DIMENSION: 2\nEDGE_WEIGHT_TYPE: GEO\nNODE_COORD_SECTION\n"
+        "1 16.47 96.10\n2 16.47 94.44\nEOF\n",
+    )
+    problem = TravellingSalesman.from_tsplib(path)
+    assert problem.distances[0][1] == 153.0
+
+
 def test_explicit_matrix_formats(tmp_path: Path) -> None:
     """Explicit full, lower-diagonal, and upper-row matrices parse symmetrically."""
     full = _write(

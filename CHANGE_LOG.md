@@ -203,3 +203,10 @@ Newest entries last. Each milestone gets a dated entry that matches the roadmap 
   `notes/reports/shared-kernel-retrofit-closeout.md`, marked P12 complete, and recorded the
   0.9.3 release, WS4/FHOPS adoption, papers pin, and the decision to keep the existing FHOPS
   solvers. No code changes.
+
+### P13.10 TSPLIB GEO parser fix
+
+- Corrected the GEO radians conversion to use the integer degree as the base.
+- Added a known-distance regression test: burma14 first edge = 153.
+- The old formula returned 117 and produced below-optimum GEO objectives.
+- Full solver tests and dashboard are green. No tag/release created.
